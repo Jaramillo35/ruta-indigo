@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+.env*
+!.env.example
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+
+# Material en bruto: pesado y no se publica
+assets/fotos-originales/**
+!assets/fotos-originales/**/.gitkeep
+assets/video/**
+!assets/video/.gitkeep
+
+# La vista previa de una sola página se genera; no hace falta versionarla
+preview/

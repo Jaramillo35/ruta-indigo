@@ -1,0 +1,314 @@
+@import "tailwindcss";
+
+/*
+ * Ruta Índigo — design tokens.
+ *
+ * The palette is taken from the hours of the day in northern India: sandstone
+ * and marigold at noon, saffron at dusk, deep indigo at night. Dark sections
+ * carry the cinematic weight; paper sections carry the reading. One warm accent
+ * (saffron→marigold) does every piece of interactive work so a call to action is
+ * never ambiguous.
+ */
+@theme {
+  --color-night: #0a0818;
+  --color-ink: #14102b;
+  --color-indigo: #221a4d;
+  --color-dusk: #45285f;
+  --color-plum: #6b3358;
+
+  --color-saffron: #e2701f;
+  --color-marigold: #f5b53f;
+  --color-sandstone: #d9a978;
+  --color-clay: #b4541f;
+
+  --color-paper: #faf3e8;
+  --color-sand: #efe1cc;
+  --color-mist: #f1e8dc;
+  --color-mist-2: #c2b4a4;
+  --color-mist-3: #9c8f80;
+
+  --font-display: var(--font-display), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+:root {
+  --header-h: 4.5rem;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-night);
+  color: var(--color-mist);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-marigold);
+  color: var(--color-night);
+}
+
+/* Anchored navigation must not tuck a heading under the sticky header. */
+section[id] {
+  scroll-margin-top: calc(var(--header-h) + 0.5rem);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-marigold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Editorial type ---------- */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.prose-lead {
+  text-wrap: pretty;
+}
+
+/* ---------- Atmosphere ---------- */
+
+/*
+ * Film grain. One tiny inline SVG turbulence, painted once over a section, is
+ * what keeps the large flat gradients from banding on wide screens.
+ */
+.grain {
+  position: relative;
+  isolation: isolate;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.28;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+.glass {
+  background: color-mix(in oklab, var(--color-night) 55%, transparent);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+}
+
+.hairline {
+  border-color: color-mix(in oklab, var(--color-sandstone) 26%, transparent);
+}
+
+/* A thin sandstone rule that fades at both ends — used between sections. */
+.rule {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklab, var(--color-sandstone) 45%, transparent),
+    transparent
+  );
+}
+
+/* ---------- Motion ---------- */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal][data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 1s var(--ease-out) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-2.5%, -1.5%, 0);
+  }
+}
+
+.drift {
+  animation: drift 34s var(--ease-in-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Reduced motion means gentler, not none: keep the fade, drop the travel. */
+  [data-reveal] {
+    transform: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .rise {
+    animation: none;
+    opacity: 1;
+  }
+
+  .drift {
+    animation: none;
+  }
+
+  .route-path {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.12s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Press feedback ---------- */
+
+.pressable {
+  transition:
+    transform 160ms var(--ease-out),
+    box-shadow 220ms var(--ease-out),
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
+}
+
+.pressable:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lift {
+    transition:
+      transform 320ms var(--ease-out),
+      box-shadow 320ms var(--ease-out),
+      border-color 320ms ease;
+  }
+
+  .lift:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* ---------- Form ---------- */
+
+.field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 22%, transparent);
+  background: color-mix(in oklab, #fff 72%, transparent);
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem;
+  color: var(--color-ink);
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    background-color 200ms ease;
+}
+
+.field::placeholder {
+  color: color-mix(in oklab, var(--color-ink) 62%, transparent);
+}
+
+.field:hover {
+  background: color-mix(in oklab, #fff 88%, transparent);
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--color-clay);
+  background: #fff;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-clay) 22%, transparent);
+}
+
+.field[aria-invalid="true"] {
+  border-color: #a12b1e;
+  box-shadow: 0 0 0 3px color-mix(in oklab, #a12b1e 16%, transparent);
+}
+
+select.field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%2314102b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.4rem;
+}
+
+/* details/summary FAQ — native disclosure, no JS, keyboard-complete. */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq-item[open] .faq-chevron {
+  transform: rotate(45deg);
+}
+
+/* The route curve fills in once its section has arrived, then stays drawn. */
+[data-reveal][data-visible="true"] .route-path {
+  animation: draw 1.9s var(--ease-out) 0.15s forwards;
+}
