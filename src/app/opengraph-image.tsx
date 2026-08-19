@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site.config";
 
@@ -8,6 +10,10 @@ export const dynamic = "force-static";
 
 /** Generated at build time so the share card follows the config, not a stale PNG. */
 export default function Image() {
+  const emblem = `data:image/png;base64,${readFileSync(
+    join(process.cwd(), "public/images/marca/isotipo-migryan.png"),
+  ).toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -33,8 +39,21 @@ export default function Image() {
             background: "radial-gradient(circle, rgba(255,233,184,0.55) 0%, rgba(226,112,31,0) 70%)",
           }}
         />
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", fontSize: 26, letterSpacing: 4 }}>
-          <div style={{ width: 46, height: 46, borderRadius: 999, background: "linear-gradient(135deg,#f5b53f,#e2701f)" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: "20px", fontSize: 26, letterSpacing: 4 }}>
+          {/* The emblem is navy on light, so it keeps its paper disc here too. */}
+          <div
+            style={{
+              display: "flex",
+              width: 96,
+              height: 96,
+              borderRadius: 999,
+              background: "#faf3e8",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img src={emblem} width={80} height={80} alt="" />
+          </div>
           {site.brand.name.toUpperCase()}
         </div>
         <div style={{ display: "flex", flexDirection: "column", marginTop: 40, fontSize: 84, lineHeight: 1.05 }}>

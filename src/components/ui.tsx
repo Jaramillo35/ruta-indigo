@@ -2,48 +2,29 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
 /**
- * A minimal wordmark: a sun low on the horizon with a route running through it.
- * No religious iconography, no imitation of any existing mark — and it is a
- * single inline SVG so it stays crisp and costs no request.
+ * The brand lockup in the chrome.
+ *
+ * Set in type, not with the emblem: the medallion's fretwork and rosettes turn
+ * to mush below about 48px, and the delivered artwork is a JPEG drawn in navy
+ * for a light ground. The emblem itself appears in the footer, at a size where
+ * it reads. Once a vector — and a reversed, single-colour version — arrives,
+ * the mark can come back up here beside the name.
  */
 export function Wordmark({
   name,
   className = "",
-  markOnly = false,
 }: {
   name: string;
   className?: string;
-  markOnly?: boolean;
 }) {
+  const [first, ...rest] = name.split(" ");
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <svg
-        width="30"
-        height="30"
-        viewBox="0 0 30 30"
-        fill="none"
-        aria-hidden="true"
-        className="shrink-0"
-      >
-        <circle cx="15" cy="13" r="6.5" fill="url(#mark-sun)" />
-        <path
-          d="M2 21.5c4.2-3.4 8.1-.4 12.3-3.6 3.6-2.8 8.2-2 13.7 1.3"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          opacity="0.85"
-        />
-        <circle cx="4.4" cy="20.2" r="1.7" fill="currentColor" />
-        <circle cx="25.8" cy="19.4" r="1.7" fill="currentColor" />
-        <defs>
-          <linearGradient id="mark-sun" x1="8" y1="6" x2="22" y2="20">
-            <stop stopColor="#f5b53f" />
-            <stop offset="1" stopColor="#e2701f" />
-          </linearGradient>
-        </defs>
-      </svg>
-      {!markOnly && (
-        <span className="display text-[1.05rem] tracking-[0.06em] uppercase">{name}</span>
+    <span className={`inline-flex items-baseline gap-2 ${className}`}>
+      <span className="display text-[1.15rem] tracking-[0.14em] uppercase">{first}</span>
+      {rest.length > 0 && (
+        <span className="text-[0.7rem] tracking-[0.3em] text-marigold uppercase">
+          {rest.join(" ")}
+        </span>
       )}
     </span>
   );

@@ -10,19 +10,18 @@
 
 export const site = {
   /**
-   * WORKING NAME — not final. "Ruta Índigo" is a placeholder chosen while the
-   * client decides: índigo is both the dye that moved along India's old trade
-   * routes and the colour of the palette, and "ruta" carries the journey motif
-   * without touching religious imagery. Replace `name` and `domain` here and
-   * the wordmark, metadata, structured data and footer all follow.
+   * The client's own name and mark. `nameIsProvisional` is what puts the
+   * "nombre de trabajo" note in the footer — now false, because this is final.
+   * Changing `name` here updates the header, the metadata, the share image,
+   * the structured data and the footer at once.
    */
   brand: {
-    name: "Ruta Índigo",
-    nameIsProvisional: true,
-    shortName: "Ruta Índigo",
+    name: "Migryan Travels",
+    nameIsProvisional: false,
+    shortName: "Migryan",
     tagline: "Viajes privados por India, en español",
     /** Used for canonical URLs, Open Graph and JSON-LD. */
-    domain: "https://ruta-indigo.example.com",
+    domain: "https://migryan-travels.example.com",
   },
 
   contact: {

@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Wordmark } from "@/components/ui";
 import { navItems } from "@/content/navigation";
 import {
   agencyEmail,
@@ -25,8 +25,18 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <Wordmark name={site.brand.name} className="text-mist" />
-            <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-mist-2">
+            {/* The emblem is drawn for paper, so it gets paper to sit on. */}
+            <div className="inline-flex rounded-2xl bg-paper px-6 py-5">
+              <Image
+                src="/images/marca/logo-migryan.png"
+                alt={`${site.brand.name} — India para latinos`}
+                width={1200}
+                height={781}
+                sizes="220px"
+                className="h-auto w-[190px]"
+              />
+            </div>
+            <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed text-mist-2">
               {site.brand.tagline}. Rutas privadas por Delhi, Agra, Jaipur y Rishikesh, con
               acompañamiento real en español.
             </p>
