@@ -25,16 +25,24 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            {/* The emblem is drawn for paper, so it gets paper to sit on. */}
-            <div className="inline-flex rounded-2xl bg-paper px-6 py-5">
+            {/* The emblem is drawn for paper, so it gets paper to sit on. The
+                wordmark is set in type because the delivered lockup carries its
+                descriptor in English, and this site speaks Spanish. */}
+            <div className="inline-flex flex-col items-center gap-3 rounded-2xl bg-paper px-8 py-6">
               <Image
-                src="/images/marca/logo-migryan.png"
-                alt={`${site.brand.name} — India para latinos`}
-                width={1200}
-                height={781}
-                sizes="220px"
-                className="h-auto w-[190px]"
+                src="/images/marca/isotipo-migryan.png"
+                alt=""
+                width={512}
+                height={512}
+                sizes="112px"
+                className="size-[100px]"
               />
+              <span className="display text-[1.3rem] tracking-[0.16em] text-navy uppercase">
+                {site.brand.name}
+              </span>
+              <span className="text-[0.68rem] tracking-[0.28em] text-clay uppercase">
+                {site.brand.descriptor}
+              </span>
             </div>
             <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed text-mist-2">
               {site.brand.tagline}. Rutas privadas por Delhi, Agra, Jaipur y Rishikesh, con

@@ -305,7 +305,7 @@ export function ContactForm() {
           <input
             type="checkbox"
             name="privacidad"
-            className="mt-0.5 size-5 shrink-0 accent-[#b4541f]"
+            className="mt-0.5 size-5 shrink-0 accent-[#a85a20]"
             checked={lead.privacidad}
             aria-invalid={Boolean(errors.privacidad)}
             aria-describedby={errors.privacidad ? `${id}-privacidad-error` : undefined}

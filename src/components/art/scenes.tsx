@@ -10,9 +10,9 @@
 type SceneProps = { className?: string; tone?: "dusk" | "night" | "dawn" };
 
 const palettes = {
-  dusk: ["#2a1450", "#6d2f57", "#c9541f", "#f2a83a"],
-  night: ["#0a0818", "#1d1442", "#3f2160", "#a4491f"],
-  dawn: ["#3a1f56", "#8a3b4e", "#e0762a", "#f6c65c"],
+  dusk: ["#14294a", "#5c3350", "#b9601f", "#e9a04a"],
+  night: ["#07101f", "#102341", "#1c3a5e", "#a85a20"],
+  dawn: ["#16304f", "#7c3c4c", "#cd6f2b", "#edb161"],
 } as const;
 
 function Sky({ id, tone = "dusk" }: { id: string; tone?: keyof typeof palettes }) {
@@ -26,13 +26,13 @@ function Sky({ id, tone = "dusk" }: { id: string; tone?: keyof typeof palettes }
         <stop offset="100%" stopColor={d} />
       </linearGradient>
       <radialGradient id={`${id}-sun`} cx="0.5" cy="0.5" r="0.5">
-        <stop offset="0%" stopColor="#fff2cf" stopOpacity="0.95" />
-        <stop offset="45%" stopColor="#f7c25a" stopOpacity="0.55" />
-        <stop offset="100%" stopColor="#e2701f" stopOpacity="0" />
+        <stop offset="0%" stopColor="#fdefd7" stopOpacity="0.95" />
+        <stop offset="45%" stopColor="#f2c184" stopOpacity="0.55" />
+        <stop offset="100%" stopColor="#cd6f2b" stopOpacity="0" />
       </radialGradient>
       <linearGradient id={`${id}-fade`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#0a0818" stopOpacity="0" />
-        <stop offset="100%" stopColor="#0a0818" stopOpacity="0.92" />
+        <stop offset="0%" stopColor="#07101f" stopOpacity="0" />
+        <stop offset="100%" stopColor="#07101f" stopOpacity="0.92" />
       </linearGradient>
     </defs>
   );
@@ -70,7 +70,7 @@ function Birds({ x = 120, y = 120, scale = 1 }: { x?: number; y?: number; scale?
     <g
       transform={`translate(${x} ${y}) scale(${scale})`}
       fill="none"
-      stroke="#1a1030"
+      stroke="#0d1a2e"
       strokeOpacity="0.5"
       strokeWidth="2"
       strokeLinecap="round"
@@ -91,8 +91,8 @@ export function AgraScene({ className, tone = "dawn" }: SceneProps) {
       <Birds x={130} y={110} scale={1.1} />
       <Birds x={620} y={150} scale={0.8} />
       {/* far bank */}
-      <path d="M0 400h800v200H0z" fill="#1a1030" fillOpacity="0.28" />
-      <g fill="#150f2e" fillOpacity="0.92">
+      <path d="M0 400h800v200H0z" fill="#0d1a2e" fillOpacity="0.28" />
+      <g fill="#0a1526" fillOpacity="0.92">
         {/* platform */}
         <rect x="215" y="392" width="370" height="14" />
         {/* minarets */}
@@ -107,7 +107,7 @@ export function AgraScene({ className, tone = "dawn" }: SceneProps) {
         {/* main block */}
         <rect x="330" y="318" width="140" height="74" />
         {/* iwan arch */}
-        <path d="M383 392v-40a17 17 0 0 1 34 0v40z" fill="#0a0818" fillOpacity="0.55" />
+        <path d="M383 392v-40a17 17 0 0 1 34 0v40z" fill="#07101f" fillOpacity="0.55" />
         {/* dome */}
         <path d="M400 200c-34 26-46 62-46 84 0 20 20 34 46 34s46-14 46-34c0-22-12-58-46-84z" />
         <rect x="397" y="176" width="6" height="26" />
@@ -121,8 +121,8 @@ export function AgraScene({ className, tone = "dawn" }: SceneProps) {
         ))}
       </g>
       {/* water + reflection */}
-      <rect y="406" width="800" height="194" fill="#0d0a22" fillOpacity="0.55" />
-      <g fill="#f2a83a" fillOpacity="0.16">
+      <rect y="406" width="800" height="194" fill="#08172b" fillOpacity="0.55" />
+      <g fill="#e9a04a" fillOpacity="0.16">
         <rect x="392" y="418" width="16" height="120" rx="8" />
         <rect x="246" y="424" width="4" height="70" rx="2" />
         <rect x="550" y="424" width="4" height="70" rx="2" />
@@ -153,13 +153,13 @@ export function JaipurScene({ className, tone = "dusk" }: SceneProps) {
         <g key={`${row}-${i}`}>
           <path
             d={`M${x} ${y + 40}v-22a${width / 2} ${width / 2} 0 0 1 ${width} 0v22z`}
-            fill="#f2a83a"
+            fill="#e9a04a"
             fillOpacity={0.32 - row * 0.05}
           />
           <path
             d={`M${x} ${y + 40}v-22a${width / 2} ${width / 2} 0 0 1 ${width} 0v22z`}
             fill="none"
-            stroke="#0a0818"
+            stroke="#07101f"
             strokeOpacity="0.5"
             strokeWidth="2"
           />
@@ -171,7 +171,7 @@ export function JaipurScene({ className, tone = "dusk" }: SceneProps) {
     <Base id="jaipur" tone={tone} className={className}>
       <circle cx="620" cy="180" r="120" fill="url(#jaipur-sun)" />
       <Birds x={140} y={140} scale={0.9} />
-      <g fill="#150f2e" fillOpacity="0.94">
+      <g fill="#0a1526" fillOpacity="0.94">
         {/* stepped facade */}
         <path d="M150 600V264l50-26 60 26h280l60-26 50 26v336z" />
         {/* crenellation */}
@@ -188,7 +188,7 @@ export function JaipurScene({ className, tone = "dusk" }: SceneProps) {
         ))}
       </g>
       {windows}
-      <rect y="560" width="800" height="40" fill="#0a0818" fillOpacity="0.6" />
+      <rect y="560" width="800" height="40" fill="#07101f" fillOpacity="0.6" />
     </Base>
   );
 }
@@ -203,10 +203,10 @@ export function DelhiScene({ className, tone = "night" }: SceneProps) {
       {/* haze skyline */}
       <path
         d="M0 452l60-18 40 12 50-26 46 20 60-10 44 16 56-24 60 18 52-12 48 22 62-16 60 18 42-10v150H0z"
-        fill="#1a1030"
+        fill="#0d1a2e"
         fillOpacity="0.42"
       />
-      <g fill="#150f2e" fillOpacity="0.94">
+      <g fill="#0a1526" fillOpacity="0.94">
         {/* tapering minar with balcony bands */}
         <path d="M568 500V300l-18-92h-44l-18 92v200z" />
         {[236, 300, 364, 428].map((y, i) => (
@@ -220,7 +220,7 @@ export function DelhiScene({ className, tone = "night" }: SceneProps) {
           <path
             key={x}
             d={`M${x} 470v-52a26 26 0 0 1 52 0v52z`}
-            fill="#150f2e"
+            fill="#0a1526"
             fillOpacity="0.94"
           />
         ))}
@@ -228,12 +228,12 @@ export function DelhiScene({ className, tone = "night" }: SceneProps) {
           <path
             key={`in-${x}`}
             d={`M${x + 10} 470v-44a16 16 0 0 1 32 0v44z`}
-            fill="#e2701f"
+            fill="#cd6f2b"
             fillOpacity="0.2"
           />
         ))}
       </g>
-      <rect y="500" width="800" height="100" fill="#0a0818" fillOpacity="0.75" />
+      <rect y="500" width="800" height="100" fill="#07101f" fillOpacity="0.75" />
     </Base>
   );
 }
@@ -246,11 +246,11 @@ export function RishikeshScene({ className, tone = "dawn" }: SceneProps) {
       <circle cx="430" cy="300" r="160" fill="url(#rishikesh-sun)" />
       <Birds x={180} y={120} scale={1.1} />
       {/* far ridge */}
-      <path d="M0 330l120-70 90 52 110-84 120 96 130-70 110 66 120-40v280H0z" fill="#2a1a4a" fillOpacity="0.65" />
+      <path d="M0 330l120-70 90 52 110-84 120 96 130-70 110 66 120-40v280H0z" fill="#14294a" fillOpacity="0.65" />
       {/* near ridge */}
-      <path d="M0 400l140-58 120 44 130-56 140 62 130-40 140 48v200H0z" fill="#150f2e" fillOpacity="0.9" />
+      <path d="M0 400l140-58 120 44 130-56 140 62 130-40 140 48v200H0z" fill="#0a1526" fillOpacity="0.9" />
       {/* suspension bridge */}
-      <g stroke="#0a0818" strokeOpacity="0.9" fill="none">
+      <g stroke="#07101f" strokeOpacity="0.9" fill="none">
         <path d="M60 388h680" strokeWidth="5" />
         <path d="M60 356q340 96 680 0" strokeWidth="3" />
         {Array.from({ length: 17 }).map((_, i) => {
@@ -262,14 +262,14 @@ export function RishikeshScene({ className, tone = "dawn" }: SceneProps) {
         <path d="M60 340v70M740 340v70" strokeWidth="6" />
       </g>
       {/* river */}
-      <path d="M0 430h800v170H0z" fill="#123a4a" fillOpacity="0.55" />
+      <path d="M0 430h800v170H0z" fill="#0f3550" fillOpacity="0.55" />
       <g stroke="#f6d9a4" strokeOpacity="0.2" strokeWidth="1.6">
         {[452, 486, 520, 554].map((y, i) => (
           <path key={y} d={`M${60 + i * 40} ${y}h${300 + i * 60}`} />
         ))}
       </g>
       {/* floating lamps */}
-      <g fill="#f5b53f" fillOpacity="0.65">
+      <g fill="#e9a04a" fillOpacity="0.65">
         {[
           [180, 470],
           [300, 508],
@@ -290,13 +290,13 @@ export function CustomScene({ className, tone = "night" }: SceneProps) {
     <Base id="custom" tone={tone} className={className}>
       <circle cx="470" cy="330" r="120" fill="url(#custom-sun)" />
       {/* a horizon so the abstraction still reads as a landscape */}
-      <path d="M0 372l130-42 120 34 140-52 130 46 150-38 130 40v240H0z" fill="#2a1a4a" fillOpacity="0.6" />
-      <path d="M0 432l150-40 140 34 150-44 140 40 130-26 130 32v192H0z" fill="#150f2e" fillOpacity="0.92" />
-      <g fill="none" stroke="#f5b53f" strokeOpacity="0.6" strokeWidth="2.5" strokeLinecap="round">
+      <path d="M0 372l130-42 120 34 140-52 130 46 150-38 130 40v240H0z" fill="#14294a" fillOpacity="0.6" />
+      <path d="M0 432l150-40 140 34 150-44 140 40 130-26 130 32v192H0z" fill="#0a1526" fillOpacity="0.92" />
+      <g fill="none" stroke="#e9a04a" strokeOpacity="0.6" strokeWidth="2.5" strokeLinecap="round">
         <path d="M110 500q130-160 290-124t280-106" strokeDasharray="10 14" />
         <path d="M110 540q170-104 300-58t250-160" strokeOpacity="0.22" strokeDasharray="4 12" />
       </g>
-      <g fill="#f5b53f">
+      <g fill="#e9a04a">
         {[
           [110, 500],
           [400, 350],
@@ -304,7 +304,7 @@ export function CustomScene({ className, tone = "night" }: SceneProps) {
         ].map(([x, y]) => (
           <g key={`${x}-${y}`}>
             <circle cx={x} cy={y} r="7" />
-            <circle cx={x} cy={y} r="16" fill="none" stroke="#f5b53f" strokeOpacity="0.35" strokeWidth="1.5" />
+            <circle cx={x} cy={y} r="16" fill="none" stroke="#e9a04a" strokeOpacity="0.35" strokeWidth="1.5" />
           </g>
         ))}
       </g>
@@ -313,9 +313,9 @@ export function CustomScene({ className, tone = "night" }: SceneProps) {
         <circle r="42" strokeWidth="1.2" />
         <circle r="28" strokeWidth="0.8" strokeDasharray="3 6" />
         <path d="M0-46V46M-46 0H46" strokeWidth="0.8" />
-        <path d="M0-34l9 25 25 9-25 9-9 25-9-25-25-9 25-9z" fill="#f5b53f" fillOpacity="0.5" stroke="none" />
+        <path d="M0-34l9 25 25 9-25 9-9 25-9-25-25-9 25-9z" fill="#e9a04a" fillOpacity="0.5" stroke="none" />
       </g>
-      <rect y="520" width="800" height="80" fill="#0a0818" fillOpacity="0.6" />
+      <rect y="520" width="800" height="80" fill="#07101f" fillOpacity="0.6" />
     </Base>
   );
 }

@@ -49,29 +49,29 @@ export function HeroBackdrop() {
         <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
           <defs>
             <linearGradient id="hero-sky" x1="0" y1="0" x2="0.25" y2="1">
-              <stop offset="0%" stopColor="#0a0818" />
-              <stop offset="34%" stopColor="#251550" />
-              <stop offset="62%" stopColor="#6d2c56" />
-              <stop offset="82%" stopColor="#c9531f" />
-              <stop offset="100%" stopColor="#f3a93c" />
+              <stop offset="0%" stopColor="#07101f" />
+              <stop offset="34%" stopColor="#152e57" />
+              <stop offset="62%" stopColor="#5c3350" />
+              <stop offset="82%" stopColor="#bb6122" />
+              <stop offset="100%" stopColor="#e9a04a" />
             </linearGradient>
             <radialGradient id="hero-sun" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0%" stopColor="#fff4d6" stopOpacity="0.98" />
-              <stop offset="30%" stopColor="#fbd07a" stopOpacity="0.72" />
-              <stop offset="62%" stopColor="#e88a2c" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#e2701f" stopOpacity="0" />
+              <stop offset="0%" stopColor="#fdefd7" stopOpacity="0.98" />
+              <stop offset="30%" stopColor="#f2c184" stopOpacity="0.72" />
+              <stop offset="62%" stopColor="#d4842f" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#cd6f2b" stopOpacity="0" />
             </radialGradient>
             <linearGradient id="hero-haze" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#f3a93c" stopOpacity="0" />
-              <stop offset="100%" stopColor="#f3a93c" stopOpacity="0.22" />
+              <stop offset="0%" stopColor="#e9a04a" stopOpacity="0" />
+              <stop offset="100%" stopColor="#e9a04a" stopOpacity="0.22" />
             </linearGradient>
           </defs>
           <rect width="1440" height="900" fill="url(#hero-sky)" />
           <circle cx="1010" cy="640" r="330" fill="url(#hero-sun)" />
-          <circle cx="1010" cy="640" r="96" fill="#ffe9b8" fillOpacity="0.5" />
+          <circle cx="1010" cy="640" r="96" fill="#fbe4c2" fillOpacity="0.5" />
           <rect y="520" width="1440" height="380" fill="url(#hero-haze)" />
           {/* distant kite / bird cluster */}
-          <g stroke="#1a1030" strokeOpacity="0.45" strokeWidth="2.4" fill="none" strokeLinecap="round">
+          <g stroke="#0d1a2e" strokeOpacity="0.45" strokeWidth="2.4" fill="none" strokeLinecap="round">
             <path d="M250 210c9-9 15-9 24 0" />
             <path d="M296 236c8-8 13-8 20 0" />
             <path d="M214 264c7-7 11-7 17 0" />
@@ -86,10 +86,10 @@ export function HeroBackdrop() {
           {/* far ridge */}
           <path
             d="M0 566l150-52 120 34 160-64 150 58 170-72 160 66 150-46 180 56 40-14v292H0z"
-            fill="#2b1a4c"
+            fill="#14294a"
             fillOpacity="0.55"
           />
-          <g fill="#150f2e" fillOpacity="0.9">
+          <g fill="#0a1526" fillOpacity="0.9">
             {/* Jaipur-style stepped facade, left */}
             <path d="M40 780V596l40-20 44 20h150l44-20 40 20v184z" />
             {Array.from({ length: 14 }).map((_, i) => (
@@ -129,7 +129,7 @@ export function HeroBackdrop() {
               </g>
             ))}
             {/* arch openings, catching the last light */}
-            <path d="M893 700v-52a27 27 0 0 1 54 0v52z" fill="#e2701f" fillOpacity="0.32" />
+            <path d="M893 700v-52a27 27 0 0 1 54 0v52z" fill="#cd6f2b" fillOpacity="0.32" />
             {/* small temple spire, far right */}
             <path d="M1290 780V640l-34-84-34 84v140z" />
             <rect x="1250" y="530" width="12" height="28" />
@@ -139,8 +139,8 @@ export function HeroBackdrop() {
 
       <div ref={frontRef} className="absolute inset-x-0 -bottom-[6%] h-[42%] will-change-transform">
         <svg viewBox="0 0 1440 340" preserveAspectRatio="xMidYMax slice" className="h-full w-full">
-          <path d="M0 120c180 34 320 8 520 34s340 6 520 26 260 22 400 12v148H0z" fill="#0a0818" fillOpacity="0.96" />
-          <g fill="#0a0818">
+          <path d="M0 120c180 34 320 8 520 34s340 6 520 26 260 22 400 12v148H0z" fill="#07101f" fillOpacity="0.96" />
+          <g fill="#07101f">
             {/* palm silhouettes */}
             <g transform="translate(120 120)">
               <path d="M6 0v130h8V0z" />

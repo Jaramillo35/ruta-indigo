@@ -19,6 +19,9 @@ export const site = {
     name: "Migryan Travels",
     nameIsProvisional: false,
     shortName: "Migryan",
+    /* El lockup original dice "India · for Latinos"; en el sitio, que habla
+       español a ese mismo público, se usa en español. */
+    descriptor: "India · para latinos",
     tagline: "Viajes privados por India, en español",
     /** Used for canonical URLs, Open Graph and JSON-LD. */
     domain: "https://migryan-travels.example.com",

@@ -16,7 +16,7 @@ export function LegalPage({
       <header className="border-b hairline">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-5 sm:px-8">
           <Link href="/" className="text-mist" aria-label={`${site.brand.name} — inicio`}>
-            <Wordmark name={site.brand.name} />
+            <Wordmark name={site.brand.name} descriptor={site.brand.descriptor} />
           </Link>
           <Link href="/" className="text-[0.88rem] text-mist-2 hover:text-marigold">
             Volver al inicio

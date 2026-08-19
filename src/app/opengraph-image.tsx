@@ -24,7 +24,7 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "flex-end",
           padding: "72px",
-          background: "linear-gradient(150deg, #0a0818 0%, #2a1450 42%, #8a3b4e 72%, #e2701f 100%)",
+          background: "linear-gradient(150deg, #07101f 0%, #14294a 42%, #7c3c4c 72%, #cd6f2b 100%)",
           color: "#f1e8dc",
         }}
       >
@@ -58,13 +58,13 @@ export default function Image() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", marginTop: 40, fontSize: 84, lineHeight: 1.05 }}>
           <span>Descubre India</span>
-          <span style={{ color: "#f5b53f", fontStyle: "italic" }}>en tu idioma.</span>
+          <span style={{ color: "#e9a04a", fontStyle: "italic" }}>en tu idioma.</span>
         </div>
         <div style={{ marginTop: 32, fontSize: 30, color: "#d9c9b6" }}>
           Delhi · Agra · Jaipur · Rishikesh
         </div>
         <div style={{ marginTop: 12, fontSize: 24, color: "#bfae9b" }}>
-          Viajes privados · Atención real en español
+          {`${site.brand.descriptor} · Viajes privados · Atención real en español`}
         </div>
       </div>
     ),

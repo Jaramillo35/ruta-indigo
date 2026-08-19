@@ -55,9 +55,9 @@ export function RouteSection() {
             />
             <defs>
               <linearGradient id="route-grad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#f5b53f" stopOpacity="0.15" />
-                <stop offset="35%" stopColor="#f5b53f" stopOpacity="0.85" />
-                <stop offset="100%" stopColor="#e2701f" stopOpacity="0.4" />
+                <stop offset="0%" stopColor="#e9a04a" stopOpacity="0.15" />
+                <stop offset="35%" stopColor="#e9a04a" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#cd6f2b" stopOpacity="0.4" />
               </linearGradient>
             </defs>
           </svg>

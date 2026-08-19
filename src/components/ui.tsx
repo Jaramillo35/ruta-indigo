@@ -12,18 +12,27 @@ import type { ComponentProps, ReactNode } from "react";
  */
 export function Wordmark({
   name,
+  descriptor,
   className = "",
 }: {
   name: string;
+  descriptor?: string;
   className?: string;
 }) {
   const [first, ...rest] = name.split(" ");
   return (
-    <span className={`inline-flex items-baseline gap-2 ${className}`}>
-      <span className="display text-[1.15rem] tracking-[0.14em] uppercase">{first}</span>
-      {rest.length > 0 && (
-        <span className="text-[0.7rem] tracking-[0.3em] text-marigold uppercase">
-          {rest.join(" ")}
+    <span className={`inline-flex flex-col leading-none ${className}`}>
+      <span className="flex items-baseline gap-2">
+        <span className="display text-[1.15rem] tracking-[0.14em] uppercase">{first}</span>
+        {rest.length > 0 && (
+          <span className="text-[0.7rem] tracking-[0.3em] text-marigold uppercase">
+            {rest.join(" ")}
+          </span>
+        )}
+      </span>
+      {descriptor && (
+        <span className="mt-1.5 hidden text-[0.6rem] tracking-[0.24em] text-mist-3 uppercase sm:block">
+          {descriptor}
         </span>
       )}
     </span>
@@ -40,7 +49,7 @@ export function Cta({ variant = "primary", className = "", children, ...props }:
     "pressable inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[0.95rem] font-medium";
   const styles = {
     primary:
-      "bg-linear-to-b from-marigold to-saffron text-night shadow-[0_10px_30px_-10px_rgba(226,112,31,0.75)] hover:from-[#f8c25c] hover:to-[#e8802f]",
+      "bg-linear-to-b from-marigold to-saffron text-night shadow-[0_10px_30px_-10px_rgba(226,112,31,0.75)] hover:from-[#efb069] hover:to-[#d97e35]",
     ghost:
       "border border-white/25 text-mist backdrop-blur-sm hover:border-white/60 hover:bg-white/8",
     quiet:

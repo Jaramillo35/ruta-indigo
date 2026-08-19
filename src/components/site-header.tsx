@@ -79,7 +79,7 @@ export function SiteHeader() {
           className="rounded-md text-mist transition-opacity hover:opacity-80"
           aria-label={`${site.brand.name} — inicio`}
         >
-          <Wordmark name={site.brand.name} />
+          <Wordmark name={site.brand.name} descriptor={site.brand.descriptor} />
         </Link>
 
         <nav aria-label="Principal" className="hidden lg:block">
