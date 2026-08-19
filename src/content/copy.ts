@@ -115,7 +115,6 @@ export const destinationOptions = [
   { value: "delhi", label: "Delhi" },
   { value: "agra", label: "Agra" },
   { value: "jaipur", label: "Jaipur" },
-  { value: "rishikesh", label: "Rishikesh" },
   { value: "recomendacion", label: "Quiero una recomendación" },
 ] as const;
 

@@ -9,6 +9,45 @@ import { destinations } from "@/content/destinations";
  * becomes a vertical line down the left of the stack. The line is decorative —
  * the reading order is a plain ordered list either way.
  */
+/*
+ * The route curve, as data: the two cubic segments of the drawn path. `routeY`
+ * walks them to find the height of the line at a given x, which is how the
+ * station dots stay welded to the curve whatever the number of destinations.
+ */
+const routeSegments = [
+  [
+    [40, 92],
+    [220, 12],
+    [360, 12],
+    [540, 62],
+  ],
+  [
+    [540, 62],
+    [720, 112],
+    [880, 102],
+    [1160, 28],
+  ],
+] as const;
+
+function routeY(x: number): number {
+  let best = { distance: Infinity, y: 60 };
+  for (const [p0, p1, p2, p3] of routeSegments) {
+    for (let i = 0; i <= 240; i++) {
+      const t = i / 240;
+      const u = 1 - t;
+      const bx =
+        u * u * u * p0[0] + 3 * u * u * t * p1[0] + 3 * u * t * t * p2[0] + t * t * t * p3[0];
+      const distance = Math.abs(bx - x);
+      if (distance < best.distance) {
+        const by =
+          u * u * u * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t * t * t * p3[1];
+        best = { distance, y: by };
+      }
+    }
+  }
+  return best.y;
+}
+
 export function RouteSection() {
   return (
     <section id="destinos" className="grain relative overflow-hidden bg-indigo">
@@ -25,13 +64,13 @@ export function RouteSection() {
         <Reveal className="max-w-3xl">
           <Kicker className="text-marigold">Destinos</Kicker>
           <h2 className="display mt-6 text-[clamp(2.1rem,5.6vw,3.6rem)] text-mist">
-            Cuatro paradas, una sola ruta
+            Tres ciudades, una sola ruta
             <span className="block italic text-sandstone">que puedes armar como quieras.</span>
           </h2>
           <p className="prose-lead mt-6 max-w-xl text-[1rem] leading-relaxed text-mist-2">
-            Del bullicio de Delhi al silencio del Himalaya hay unas ocho horas de camino y dos
-            países distintos dentro del mismo país. Puedes recorrerlas todas o quedarte solo con
-            las que te llamen.
+            Delhi, Agra y Jaipur se recorren por carretera en unas cuatro horas entre ciudad y
+            ciudad, y cada una llega distinta: la capital, el Taj Mahal y el Rajastán. Puedes
+            hacer las tres o quedarte más tiempo en la que te llame.
           </p>
         </Reveal>
 
@@ -62,26 +101,27 @@ export function RouteSection() {
             </defs>
           </svg>
 
-          {/* Stations on the line. The offsets are the curve's own y values at
-              each column centre, read off the path above. */}
-          {[
-            { left: "11.75%", top: 49 },
-            { left: "37.25%", top: 37 },
-            { left: "62.75%", top: 87 },
-            { left: "88.25%", top: 50 },
-          ].map((node, index) => (
-            <span
-              key={node.left}
-              aria-hidden="true"
-              className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
-              style={{ left: node.left, top: node.top }}
-            >
-              <span className="block size-2.5 rounded-full bg-marigold shadow-[0_0_0_5px_rgba(245,181,63,0.16)]" />
-              <span className="sr-only">{destinations[index]?.name}</span>
-            </span>
-          ))}
+          {/* Stations sit on the curve itself: the y comes from evaluating the
+              same path, so adding or removing a destination cannot knock them
+              off the line. */}
+          {destinations.map((destination, index) => {
+            const centre = (index + 0.5) / destinations.length;
+            return (
+              <span
+                key={destination.slug}
+                aria-hidden="true"
+                className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
+                style={{ left: `${centre * 100}%`, top: routeY(centre * 1200) * (112 / 120) }}
+              >
+                <span className="block size-2.5 rounded-full bg-marigold shadow-[0_0_0_5px_rgba(233,160,74,0.18)]" />
+              </span>
+            );
+          })}
 
-          <ol className="grid grid-cols-4 gap-6">
+          <ol
+            className="grid gap-6"
+            style={{ gridTemplateColumns: `repeat(${destinations.length}, minmax(0, 1fr))` }}
+          >
             {destinations.map((destination, index) => (
               <li
                 key={destination.slug}

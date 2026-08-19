@@ -17,7 +17,7 @@ const sans = Inter({
 });
 
 const description =
-  "Viajes privados por India para viajeros de habla hispana: Delhi, Agra, Jaipur y Rishikesh, con acompañamiento real en español, transporte privado e itinerarios a la medida.";
+  "Viajes privados por el Triángulo Dorado —Delhi, Agra y Jaipur— para viajeros de habla hispana, con acompañamiento real en español, transporte privado e itinerarios a la medida.";
 
 /*
  * Where the site is being published right now. On GitHub Pages that is a
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     "viajes a India en español",
     "tour privado India",
     "Triángulo Dorado",
-    "Rishikesh yoga",
+    "Taj Mahal en español",
     "guía en español India",
     "viaje a India desde México",
   ],

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { destinations } from "@/content/destinations";
 import { navItems } from "@/content/navigation";
 import {
   agencyEmail,
@@ -45,8 +46,9 @@ export function SiteFooter() {
               </span>
             </div>
             <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed text-mist-2">
-              {site.brand.tagline}. Rutas privadas por Delhi, Agra, Jaipur y Rishikesh, con
-              acompañamiento real en español.
+              {site.brand.tagline}. El Triángulo Dorado —{destinations
+                .map((destination) => destination.name)
+                .join(", ")}— recorrido en privado y acompañado en español.
             </p>
             <p className="mt-5 text-[0.8rem] text-mist-3">{site.contact.baseNote}</p>
           </div>

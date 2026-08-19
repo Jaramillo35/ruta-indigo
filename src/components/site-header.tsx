@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { destinations } from "@/content/destinations";
 import { navItems } from "@/content/navigation";
 import { site, whatsappConfigured, whatsappLink, mailtoLink } from "@/content/site.config";
 import { Cta, Wordmark, WhatsAppGlyph } from "@/components/ui";
@@ -178,7 +179,7 @@ export function SiteHeader() {
           </ul>
           <div className="mt-auto pt-10">
             <p className="text-[0.72rem] tracking-[0.2em] text-mist-3 uppercase">
-              Delhi · Agra · Jaipur · Rishikesh
+              {destinations.map((destination) => destination.name).join(" · ")}
             </p>
             <div className="mt-4 flex flex-col gap-3">
               <Cta href="#contacto" onClick={() => setOpen(false)}>

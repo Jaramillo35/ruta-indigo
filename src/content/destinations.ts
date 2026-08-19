@@ -1,4 +1,8 @@
 /**
+ * Destinations. Today the offer is the Golden Triangle only; Rishikesh is out
+ * until the client is ready to run it. The "rishikesh" slug and its illustration
+ * are still supported, so bringing it back is one entry in this array.
+ *
  * Destinations. `photo` is null until the client sends real photography — the
  * component then renders the illustrated scene for that slug instead. Dropping
  * a file in /public/images and writing its path here is the whole swap; the
@@ -63,18 +67,5 @@ export const destinations: Destination[] = [
     // photo: "/images/destinos/jaipur/hawa-mahal.jpg",
     photo: null,
     photoAlt: "Fachada del Hawa Mahal en Jaipur",
-  },
-  {
-    slug: "rishikesh",
-    name: "Rishikesh",
-    state: "Uttarakhand",
-    order: 4,
-    short: "El Ganges, el Himalaya y otro ritmo.",
-    description:
-      "A los pies del Himalaya, donde el Ganges todavía baja frío y verde. Es el destino para quien viaja buscando yoga, silencio y días con menos agenda. Puede ser un viaje completo o los últimos días de una ruta más movida.",
-    highlights: ["Yoga y meditación", "Ceremonia del atardecer junto al río", "Puentes colgantes", "Caminatas y cascadas"],
-    // photo: "/images/destinos/rishikesh/ganges-atardecer.jpg",
-    photo: null,
-    photoAlt: "El río Ganges a su paso por Rishikesh",
   },
 ];

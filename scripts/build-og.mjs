@@ -17,6 +17,9 @@ const config = readFileSync(join(root, "src/content/site.config.ts"), "utf8");
 const read = (key) => (config.match(new RegExp(`\\n\\s*${key}:\\s*"([^"]*)"`)) || [, ""])[1];
 
 const name = read("name");
+const destinations = [
+  ...readFileSync(join(root, "src/content/destinations.ts"), "utf8").matchAll(/\n\s{4}name: "([^"]+)"/g),
+].map((match) => match[1]);
 const descriptor = read("descriptor");
 const emblem = `data:image/png;base64,${readFileSync(
   join(root, "public/images/marca/isotipo-migryan.png"),
@@ -88,7 +91,7 @@ const response = new ImageResponse(
         },
         {
           type: "div",
-          props: { style: { marginTop: 32, fontSize: 30, color: "#d9c9b6" }, children: "Delhi · Agra · Jaipur · Rishikesh" },
+          props: { style: { marginTop: 32, fontSize: 30, color: "#d9c9b6" }, children: destinations.join(" · ") },
         },
         {
           type: "div",
