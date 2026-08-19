@@ -47,6 +47,15 @@ let body = bodyMatch[1]
   .replace(/<template[\s\S]*?<\/template>/g, "")
   .replace(/<link[^>]*rel="stylesheet"[^>]*>/g, "");
 
+/* Inline every image the page points at, for the same reason as the fonts:
+   a file that is passed around by email has no server to fetch them from. */
+const types = { png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", svg: "image/svg+xml", webp: "image/webp", avif: "image/avif" };
+for (const ref of new Set([...body.matchAll(/src="(\/[^"]+\.(?:png|jpe?g|svg|webp|avif))"/g)].map((m) => m[1]))) {
+  const ext = ref.split(".").pop().toLowerCase();
+  const data = readFileSync(join(outDir, ref.replace(/^\//, ""))).toString("base64");
+  body = body.replaceAll(`src="${ref}"`, `src="data:${types[ext]};base64,${data}"`);
+}
+
 /* The form needs to know where an enquiry would go, the same way the app does. */
 const config = readFileSync(join(root, "src/content/site.config.ts"), "utf8");
 const readConfig = (key) => (config.match(new RegExp(`\\n\\s*${key}:\\s*"([^"]*)"`)) || [, ""])[1];
