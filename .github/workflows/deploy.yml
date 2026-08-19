@@ -28,6 +28,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Dirección donde se publica
+        run: |
+          owner=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          echo "SITE_URL=https://$owner.github.io/${{ github.event.repository.name }}/" >> "$GITHUB_ENV"
+
       - run: npm run build:pages
         env:
           STATIC_EXPORT: "1"
@@ -36,6 +41,7 @@ jobs:
       # the root, so leave a copy there or a bad URL gets GitHub's generic 404.
       - name: Custom 404 en la raíz
         run: cp out/404/index.html out/404.html
+
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
