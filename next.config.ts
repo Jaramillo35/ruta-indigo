@@ -17,6 +17,12 @@ const nextConfig: NextConfig = {
         output: "export" as const,
         // No image server on a static host; next/image serves the files as-is.
         images: { unoptimized: true },
+        /*
+         * Emit `terminos/index.html` instead of `terminos.html`, so the page
+         * answers both with and without the trailing slash. Without this a
+         * pasted `/terminos/` is a 404 on GitHub Pages.
+         */
+        trailingSlash: true,
       }
     : {}),
   ...(basePath ? { basePath, assetPrefix: basePath } : {}),

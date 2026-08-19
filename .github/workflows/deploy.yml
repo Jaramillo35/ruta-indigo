@@ -32,6 +32,11 @@ jobs:
         env:
           STATIC_EXPORT: "1"
           BASE_PATH: /${{ github.event.repository.name }}
+      # trailingSlash puts the 404 page at 404/index.html; Pages looks for it at
+      # the root, so leave a copy there or a bad URL gets GitHub's generic 404.
+      - name: Custom 404 en la raíz
+        run: cp out/404/index.html out/404.html
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
