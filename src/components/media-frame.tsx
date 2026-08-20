@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Scene, type SceneName } from "@/components/art/scenes";
+import { asset } from "@/lib/asset";
 
 /**
  * The image seam. Every visual in the site goes through here: give it a photo
@@ -30,7 +31,7 @@ export function MediaFrame({
     <div className={`relative overflow-hidden ${className}`}>
       {photo ? (
         <Image
-          src={photo}
+          src={asset(photo)}
           alt={alt}
           fill
           sizes={sizes}

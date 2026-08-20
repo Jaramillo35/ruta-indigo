@@ -43,6 +43,16 @@ jobs:
         run: cp out/404/index.html out/404.html
 
 
+      # next/image no antepone el basePath en un export sin optimizar: si alguna
+      # imagen sale con la ruta pelada, en Pages da 404. Mejor romper aquí.
+      - name: Verificar rutas de imágenes
+        run: |
+          if grep -q 'src="/images/' out/index.html; then
+            echo "Hay imágenes sin basePath; se romperían en Pages. Usa asset()." >&2
+            grep -o 'src="/images/[^"]*"' out/index.html | sort -u >&2
+            exit 1
+          fi
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

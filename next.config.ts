@@ -26,6 +26,9 @@ const nextConfig: NextConfig = {
       }
     : {}),
   ...(basePath ? { basePath, assetPrefix: basePath } : {}),
+  /* Readable from both server and client components, so `asset()` can prefix
+     the image srcs that next/image leaves alone in an unoptimized export. */
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
 };
 
 export default nextConfig;

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { destinations } from "@/content/destinations";
 import { navItems } from "@/content/navigation";
+import { asset } from "@/lib/asset";
 import {
   agencyEmail,
   emailConfigured,
@@ -27,7 +28,7 @@ export function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Image
-              src="/images/marca/lockup-es-claro.svg"
+              src={asset("/images/marca/lockup-es-claro.svg")}
               alt={`${site.brand.name} — ${site.brand.descriptor}`}
               width={1240}
               height={830}

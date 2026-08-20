@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 import type { ComponentProps, ReactNode } from "react";
 
 /**
@@ -21,7 +22,7 @@ export function Wordmark({
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
       <Image
-        src="/images/marca/marca-simple-clara.svg"
+        src={asset("/images/marca/marca-simple-clara.svg")}
         alt=""
         width={512}
         height={512}
