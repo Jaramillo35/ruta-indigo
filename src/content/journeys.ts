@@ -56,8 +56,8 @@ export const journeys: Journey[] = [
     exampleDays: null,
     bestFor: "Familias · Grupos · Quien ya conoce parte de India",
     art: "custom",
-    // photo: "/images/experiencias/india-a-tu-manera/portada.jpg",
-    photo: null,
-    photoAlt: "Itinerario personalizado por India",
+    photo: "/images/experiencias/india-a-tu-manera/grupo-humayun.jpg",
+    photoAlt:
+      "Una familia de ocho viajeros posando frente a la tumba de Humayun, en Delhi",
   },
 ];
