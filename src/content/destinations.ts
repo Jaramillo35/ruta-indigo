@@ -64,8 +64,8 @@ export const destinations: Destination[] = [
     description:
       "La ciudad rosa es la parte más fotogénica del Triángulo Dorado y la favorita de quienes viajan en familia. Palacios, un observatorio del siglo XVIII y bazares de textiles y joyería donde conviene ir acompañado de alguien que conozca los precios.",
     highlights: ["Hawa Mahal", "Fuerte Amber", "Jantar Mantar", "Bazares de textiles"],
-    // photo: "/images/destinos/jaipur/hawa-mahal.jpg",
-    photo: null,
-    photoAlt: "Fachada del Hawa Mahal en Jaipur",
+    photo: "/images/destinos/jaipur/hawa-mahal.jpg",
+    photoAlt:
+      "La fachada del Hawa Mahal en Jaipur, con sus cientos de ventanas de arenisca rosa contra el cielo",
   },
 ];

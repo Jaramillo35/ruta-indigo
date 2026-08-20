@@ -64,6 +64,14 @@ export const site = {
     endpoint: process.env.NEXT_PUBLIC_LEAD_ENDPOINT ?? "",
   },
 
+  /**
+   * Fotografía de terceros usada en el sitio. La licencia de Unsplash no exige
+   * atribución, pero se deja registrada aquí y en el pie: cuando lleguen fotos
+   * propias de Jaipur, se borra la entrada y se cambia la ruta en
+   * destinations.ts.
+   */
+  photoCredits: [{ author: "Roberto Reposo", source: "Unsplash", subject: "Hawa Mahal" }],
+
   legal: {
     privacyHref: "/aviso-de-privacidad",
     termsHref: "/terminos",

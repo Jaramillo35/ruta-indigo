@@ -117,6 +117,14 @@ export function SiteFooter() {
 
         <div className="mt-6 flex flex-col gap-4 text-[0.8rem] text-mist-3 sm:flex-row sm:items-center sm:justify-between">
           <p>
+            {site.photoCredits.length > 0 && (
+              <span className="mb-2 block">
+                Fotografía:{" "}
+                {site.photoCredits
+                  .map((credit) => `${credit.author} (${credit.source})`)
+                  .join(", ")}
+              </span>
+            )}
             © {new Date().getFullYear()} {site.brand.name}
             {site.brand.nameIsProvisional && (
               <span className="text-mist-3"> · nombre de trabajo, pendiente de confirmar</span>
