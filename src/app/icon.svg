@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0b3972"/>
-  <path d="M32 11 53 32 32 53 11 32Z" fill="none" stroke="#cd6f2b" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M32 22c-6 5-8 11-8 14.5 0 3.6 3.6 6 8 6s8-2.4 8-6c0-3.5-2-9.5-8-14.5Z" fill="#faf3e8"/>
-  <rect x="30.6" y="16.5" width="2.8" height="5.5" rx="1.2" fill="#faf3e8"/>
-  <rect x="20" y="42.5" width="24" height="3" rx="1.4" fill="#faf3e8"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#FAF3E8"/><circle cx="256" cy="256" r="228" stroke-width="14" stroke="#CD6F2B" fill="none"></circle><g transform="translate(256,256)"><path d="M0,-180L45,-180L45,-135L90,-135L90,-90L135,-90L135,-45L180,-45L180,0L180,45L135,45L135,90L90,90L90,135L45,135L45,180L0,180L-45,180L-45,135L-90,135L-90,90L-135,90L-135,45L-180,45L-180,0L-180,-45L-135,-45L-135,-90L-90,-90L-90,-135L-45,-135L-45,-180ZM-11,-146L-11,-101L-56,-101L-56,-56L-101,-56L-101,-11L-146,-11L-146,0L-146,11L-101,11L-101,56L-56,56L-56,101L-11,101L-11,146L0,146L11,146L11,101L56,101L56,56L101,56L101,11L146,11L146,0L146,-11L101,-11L101,-56L56,-56L56,-101L11,-101L11,-146L0,-146Z" fill="#CD6F2B" fill-rule="evenodd"></path></g><path d="M181,300C181,244.8 184.75,217.2 223,182.7C239.5,171.66 247.75,166.14 256,162C264.25,166.14 272.5,171.66 289,182.7C327.25,217.2 331,244.8 331,300ZM150,300H362V326H150ZM252,182H260V206H252ZM248,175a8,8 0 1 0 16,0a8,8 0 1 0 -16,0Z" fill="#0B3972" fill-rule="evenodd"></path></svg>

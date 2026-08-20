@@ -22,7 +22,7 @@ const destinations = [
 ].map((match) => match[1]);
 const descriptor = read("descriptor");
 const emblem = `data:image/png;base64,${readFileSync(
-  join(root, "public/images/marca/isotipo-migryan.png"),
+  join(root, "assets/marca/kit/png/emblem-reversed-clear-2x.png"),
 ).toString("base64")}`;
 
 const response = new ImageResponse(
@@ -60,21 +60,7 @@ const response = new ImageResponse(
           props: {
             style: { display: "flex", alignItems: "center", gap: "20px", fontSize: 26, letterSpacing: 4 },
             children: [
-              {
-                type: "div",
-                props: {
-                  style: {
-                    display: "flex",
-                    width: 96,
-                    height: 96,
-                    borderRadius: 999,
-                    background: "#faf3e8",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  },
-                  children: { type: "img", props: { src: emblem, width: 80, height: 80 } },
-                },
-              },
+              { type: "img", props: { src: emblem, width: 104, height: 104 } },
               name.toUpperCase(),
             ],
           },

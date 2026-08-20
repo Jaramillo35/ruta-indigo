@@ -36,9 +36,9 @@ export const journeys: Journey[] = [
     exampleDays: "5 a 8 días",
     bestFor: "Primera vez en India · Parejas y familias",
     art: "agra",
-    // photo: "/images/experiencias/triangulo-dorado/portada.jpg",
-    photo: null,
-    photoAlt: "Ruta del Triángulo Dorado",
+    photo: "/images/experiencias/triangulo-dorado/puerta-taj.jpg",
+    photoAlt:
+      "La gran puerta de arenisca roja que da entrada al recinto del Taj Mahal, con sus cúpulas blancas en lo alto",
   },
   {
     slug: "india-a-tu-manera",

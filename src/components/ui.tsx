@@ -1,14 +1,12 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
 /**
- * The brand lockup in the chrome.
- *
- * Set in type, not with the emblem: the medallion's fretwork and rosettes turn
- * to mush below about 48px, and the delivered artwork is a JPEG drawn in navy
- * for a light ground. The emblem itself appears in the footer, at a size where
- * it reads. Once a vector — and a reversed, single-colour version — arrives,
- * the mark can come back up here beside the name.
+ * The brand lockup in the chrome: the simplified mark from the logo kit beside
+ * the name. The full emblem's fretwork does not survive 36px — that is exactly
+ * why the kit ships a simplified version — and the mark is recoloured light so
+ * it reads on the dark header.
  */
 export function Wordmark({
   name,
@@ -21,20 +19,30 @@ export function Wordmark({
 }) {
   const [first, ...rest] = name.split(" ");
   return (
-    <span className={`inline-flex flex-col leading-none ${className}`}>
-      <span className="flex items-baseline gap-2">
-        <span className="display text-[1.15rem] tracking-[0.14em] uppercase">{first}</span>
-        {rest.length > 0 && (
-          <span className="text-[0.7rem] tracking-[0.3em] text-marigold uppercase">
-            {rest.join(" ")}
+    <span className={`inline-flex items-center gap-3 ${className}`}>
+      <Image
+        src="/images/marca/marca-simple-clara.svg"
+        alt=""
+        width={512}
+        height={512}
+        priority
+        className="size-9 shrink-0"
+      />
+      <span className="inline-flex flex-col leading-none">
+        <span className="flex items-baseline gap-2">
+          <span className="display text-[1.1rem] tracking-[0.14em] uppercase">{first}</span>
+          {rest.length > 0 && (
+            <span className="text-[0.68rem] tracking-[0.3em] text-marigold uppercase">
+              {rest.join(" ")}
+            </span>
+          )}
+        </span>
+        {descriptor && (
+          <span className="mt-1.5 hidden text-[0.6rem] tracking-[0.24em] text-mist-3 uppercase sm:block">
+            {descriptor}
           </span>
         )}
       </span>
-      {descriptor && (
-        <span className="mt-1.5 hidden text-[0.6rem] tracking-[0.24em] text-mist-3 uppercase sm:block">
-          {descriptor}
-        </span>
-      )}
     </span>
   );
 }

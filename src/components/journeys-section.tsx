@@ -16,13 +16,13 @@ export function JourneysSection() {
           <Reveal className="max-w-2xl">
             <Kicker className="text-marigold">Experiencias</Kicker>
             <h2 className="display mt-6 text-[clamp(2.1rem,5.6vw,3.6rem)] text-mist">
-              Dos maneras de empezar,
-              <span className="block italic text-sandstone">y una tercera si ninguna te queda.</span>
+              Una ruta clásica,
+              <span className="block italic text-sandstone">y la libertad de acomodarla.</span>
             </h2>
           </Reveal>
           <Reveal delay={100} className="max-w-sm">
             <p className="text-[0.95rem] leading-relaxed text-mist-2">
-              Ninguna de estas rutas es un paquete cerrado. Son puntos de partida: cambian los
+              El Triángulo Dorado no es un paquete cerrado: es un punto de partida. Cambian los
               días, el orden y el ritmo según con quién viajes y qué te interese.
             </p>
           </Reveal>

@@ -38,9 +38,9 @@ export const destinations: Destination[] = [
     description:
       "Casi todos los viajes empiezan aquí. Delhi mezcla la ciudad vieja —callejones, especias, mercados que llevan siglos abiertos— con avenidas amplias y monumentos coloniales. Es el mejor lugar para acomodar el cuerpo al cambio de horario sin perder el día.",
     highlights: ["Old Delhi y sus mercados", "Qutub Minar", "Puerta de India", "Comida callejera con guía"],
-    // photo: "/images/destinos/delhi/old-delhi-mercado.jpg",
-    photo: null,
-    photoAlt: "Vista de Delhi",
+    photo: "/images/destinos/delhi/tumba-humayun.jpg",
+    photoAlt:
+      "La tumba de Humayun en Delhi: arenisca roja y mármol blanco bajo su gran cúpula, entre palmeras",
   },
   {
     slug: "agra",
@@ -51,9 +51,9 @@ export const destinations: Destination[] = [
     description:
       "El Taj Mahal cambia de color con la luz, y a qué hora lo visitas cambia por completo la experiencia. Agra también guarda su fuerte de arenisca roja y talleres donde todavía se trabaja el mármol incrustado a mano.",
     highlights: ["Taj Mahal", "Fuerte de Agra", "Talleres de marquetería en mármol", "Mirador del Yamuna"],
-    // photo: "/images/destinos/agra/taj-amanecer.jpg",
-    photo: null,
-    photoAlt: "El Taj Mahal en Agra",
+    photo: "/images/destinos/agra/taj-mahal.jpg",
+    photoAlt:
+      "El Taj Mahal desde los jardines, reflejado en el canal de agua que lleva hasta su entrada",
   },
   {
     slug: "jaipur",

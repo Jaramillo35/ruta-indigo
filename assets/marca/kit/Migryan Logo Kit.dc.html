@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  body{margin:0;background:#FAF8F4;}
+  a{color:#CD6F2B;text-decoration:none;}
+  a:hover{color:#0B3972;}
+</style>
+</helmet>
+<div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#0B3972;background:#FAF8F4;padding:72px 80px 120px;display:flex;flex-direction:column;gap:72px">
+
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid rgba(11,57,114,.18);padding-bottom:24px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#CD6F2B">Logo kit · redraw of approved mark</div>
+      <div style="font-size:40px;font-weight:600;letter-spacing:-.01em">Migryan Travels</div>
+    </div>
+    <div style="display:flex;gap:32px;font-size:12px;letter-spacing:.06em">
+      <div style="display:flex;gap:10px;align-items:center"><span style="width:22px;height:22px;background:#0B3972;border-radius:2px"></span>Navy #0B3972</div>
+      <div style="display:flex;gap:10px;align-items:center"><span style="width:22px;height:22px;background:#CD6F2B;border-radius:2px"></span>Orange #CD6F2B</div>
+      <div style="display:flex;gap:10px;align-items:center"><span style="width:22px;height:22px;background:#FAF3E8;border:1px solid rgba(11,57,114,.25);border-radius:2px"></span>Light #FAF3E8</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center">
+    <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:40px;display:flex;justify-content:center">
+      <img src="assets/stacked-es-full.svg" alt="Primary stacked lockup" style="width:100%;max-width:520px;display:block"/>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#CD6F2B">01 · Primary lockup</div>
+      <div style="font-size:22px;line-height:1.5;max-width:44ch;text-wrap:pretty">Stacked, Spanish descriptor. Geometry only — no raster, no masks, no auto-trace points. All type is drawn as monoline geometry, so the files carry no font dependency.</div>
+      <div style="font-size:14px;line-height:1.9;color:rgba(11,57,114,.75)">
+        <div>Emblem artboard 512 × 512, centred, even margins.</div>
+        <div>Stacked artboard 1240 × 830 · horizontal 1570 × 540.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#CD6F2B">02 · Emblem &amp; descriptor variants</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px">
+      <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:32px;display:flex;flex-direction:column;gap:16px;align-items:center">
+        <img src="assets/emblem-full.svg" alt="Emblem" style="width:260px;display:block"/>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(11,57,114,.6)">Emblem alone · 512 sq</div>
+      </div>
+      <div style="background:#0B2A4F;padding:32px;display:flex;flex-direction:column;gap:16px;align-items:center">
+        <img src="assets/emblem-reversed-clear.svg" alt="Reversed emblem" style="width:260px;display:block"/>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,243,232,.7)">Reversed one-colour cut · #FAF3E8</div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:32px;display:flex;flex-direction:column;gap:14px">
+        <img src="assets/stacked-es-full.svg" alt="Stacked Spanish" style="width:100%;display:block"/>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(11,57,114,.6)">Stacked · India · Para Latinos (primary)</div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:32px;display:flex;flex-direction:column;gap:14px">
+        <img src="assets/stacked-en-full.svg" alt="Stacked English" style="width:100%;display:block"/>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(11,57,114,.6)">Stacked · India · For Latinos (secondary)</div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:32px;display:flex;flex-direction:column;gap:14px">
+        <img src="assets/horizontal-es-full.svg" alt="Horizontal Spanish" style="width:100%;display:block"/>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(11,57,114,.6)">Horizontal · Para Latinos</div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:32px;display:flex;flex-direction:column;gap:14px">
+        <img src="assets/horizontal-en-full.svg" alt="Horizontal English" style="width:100%;display:block"/>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(11,57,114,.6)">Horizontal · For Latinos</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#CD6F2B">03 · Single-colour</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:32px;display:flex;flex-direction:column;gap:14px">
+        <img src="assets/stacked-es-navy.svg" alt="Navy only" style="width:100%;display:block"/>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(11,57,114,.6)">Navy only</div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:32px;display:flex;flex-direction:column;gap:14px">
+        <img src="assets/stacked-es-orange.svg" alt="Orange only" style="width:100%;display:block"/>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(11,57,114,.6)">Orange only</div>
+      </div>
+      <div style="background:#0B2A4F;padding:32px;display:flex;flex-direction:column;gap:14px">
+        <img src="assets/stacked-es-reversed-clear.svg" alt="Reversed" style="width:100%;display:block"/>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,243,232,.7)">Reversed · knock-out detail</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#CD6F2B">04 · Favicon reduction</div>
+    <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:40px;display:flex;gap:56px;align-items:flex-end">
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center"><img src="assets/favicon-16.svg" alt="16px" style="width:16px;height:16px;image-rendering:auto"/><span style="font-size:11px;color:rgba(11,57,114,.6)">16</span></div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center"><img src="assets/favicon-32.svg" alt="32px" style="width:32px;height:32px"/><span style="font-size:11px;color:rgba(11,57,114,.6)">32</span></div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center"><img src="assets/favicon-64.svg" alt="64px" style="width:64px;height:64px"/><span style="font-size:11px;color:rgba(11,57,114,.6)">64</span></div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center"><img src="assets/favicon-512.svg" alt="512px" style="width:160px;height:160px"/><span style="font-size:11px;color:rgba(11,57,114,.6)">512</span></div>
+      <div style="font-size:14px;line-height:1.8;color:rgba(11,57,114,.75);max-width:36ch;text-wrap:pretty">Fretwork and rosettes dropped; ring, diamond and dome kept. Finial only above 32px.</div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#CD6F2B">05 · Clear space &amp; minimum size</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:32px;position:relative">
+        <div style="position:relative;outline:1px dashed rgba(205,111,43,.55);outline-offset:44px;display:flex;justify-content:center">
+          <img src="assets/emblem-full.svg" alt="Clear space" style="width:220px;display:block"/>
+        </div>
+        <div style="margin-top:64px;font-size:14px;line-height:1.8;color:rgba(11,57,114,.75)">Clear space on all four sides equals <strong style="color:#0B3972">one fifth of the medallion diameter</strong> (0.2 × ⌀). Nothing — type, rules, image edges — enters that field. For horizontal lockups measure from the outer bounding box of the full lockup.</div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(11,57,114,.12);padding:32px;display:flex;flex-direction:column;gap:18px;font-size:14px;line-height:1.9;color:rgba(11,57,114,.8)">
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(11,57,114,.55)">Minimum sizes</div>
+        <div>Stacked lockup — print <strong>28 mm</strong> wide · screen <strong>110 px</strong> wide.</div>
+        <div>Horizontal lockup — print <strong>38 mm</strong> wide · screen <strong>150 px</strong> wide.</div>
+        <div>Emblem alone — print <strong>12 mm</strong> · screen <strong>44 px</strong>.</div>
+        <div>Below 44 px on screen or 10 mm in print, switch to the favicon reduction.</div>
+        <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(11,57,114,.55);margin-top:8px">Typeface</div>
+        <div>The original wordmark is a geometric sans in the Futura / Century Gothic lineage — closest widely available match: <strong>Jost*</strong> (Google Fonts), then <strong>Poppins</strong>. In these files the type is drawn as geometry, not set, so no licence or font install is needed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:20px;border-top:1px solid rgba(11,57,114,.18);padding-top:32px">
+    <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#CD6F2B">06 · Files</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;font-size:13px;line-height:2;color:rgba(11,57,114,.8)">
+      <div>
+        <div style="font-weight:600;color:#0B3972">SVG masters — assets/</div>
+        <div>emblem-{full,navy,orange,reversed,reversed-clear}</div>
+        <div>stacked-{es,en}-{full,navy,orange,reversed,reversed-clear}</div>
+        <div>horizontal-{es,en}-{same set}</div>
+        <div>favicon-{16,32,64,512}</div>
+      </div>
+      <div>
+        <div style="font-weight:600;color:#0B3972">PNG — assets/png/</div>
+        <div>Transparent, 1x and 2x for every emblem, lockup and favicon size.</div>
+      </div>
+      <div>
+        <div style="font-weight:600;color:#0B3972">Notes</div>
+        <div>“reversed” carries a dark proof background; “reversed-clear” is the transparent production file.</div>
+        <div>No gradients, no shadows, no clipping masks anywhere.</div>
+        <div>The stepped band, fretwork and letterforms are monoline stroke geometry — run one Expand / Outline Stroke pass before sending to a cutter or embroiderer.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>
