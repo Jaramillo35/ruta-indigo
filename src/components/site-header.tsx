@@ -173,7 +173,7 @@ export function SiteHeader({
           </Cta>
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 lg:hidden">
           {languageToggle}
           <button
             ref={toggleRef}
@@ -181,7 +181,8 @@ export function SiteHeader({
             onClick={() => (open ? close() : setOpen(true))}
             aria-expanded={open}
             aria-controls="menu-movil"
-            className="pressable -mr-2 inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2.5 text-[0.85rem] text-mist"
+            aria-label={open ? copy.a11y.menuClose : copy.a11y.menuOpen}
+            className="pressable -mr-2 inline-flex items-center gap-2 rounded-full border border-white/20 px-3.5 py-2.5 text-[0.85rem] text-mist sm:px-4"
           >
             <span className="relative block h-3 w-4" aria-hidden="true">
               <span
@@ -197,7 +198,9 @@ export function SiteHeader({
                 style={{ transitionTimingFunction: "var(--ease-out)" }}
               />
             </span>
-            {open ? copy.a11y.menuClose : copy.a11y.menuOpen}
+            <span className="hidden sm:inline">
+              {open ? copy.a11y.menuClose : copy.a11y.menuOpen}
+            </span>
           </button>
         </div>
       </div>
