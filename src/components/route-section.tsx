@@ -1,7 +1,8 @@
 import { Reveal } from "@/components/reveal";
 import { MediaFrame } from "@/components/media-frame";
 import { Kicker } from "@/components/ui";
-import { destinations } from "@/content/destinations";
+import { destinations, type Destination } from "@/content/destinations";
+import { content, type Lang } from "@/content/i18n";
 
 /**
  * The journey motif made literal. On wide screens the four destinations sit on
@@ -48,7 +49,8 @@ function routeY(x: number): number {
   return best.y;
 }
 
-export function RouteSection() {
+export function RouteSection({ lang }: { lang: Lang }) {
+  const c = content[lang];
   return (
     <section id="destinos" className="grain relative overflow-hidden bg-indigo">
       <div
@@ -62,15 +64,13 @@ export function RouteSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
         <Reveal className="max-w-3xl">
-          <Kicker className="text-marigold">Destinos</Kicker>
+          <Kicker className="text-marigold">{c.route.kicker}</Kicker>
           <h2 className="display mt-6 text-[clamp(2.1rem,5.6vw,3.6rem)] text-mist">
-            Tres ciudades, una sola ruta
-            <span className="block italic text-sandstone">que puedes armar como quieras.</span>
+            {c.route.heading}
+            <span className="block italic text-sandstone">{c.route.headingAccent}</span>
           </h2>
           <p className="prose-lead mt-6 max-w-xl text-[1rem] leading-relaxed text-mist-2">
-            Delhi, Agra y Jaipur se recorren por carretera en unas cuatro horas entre ciudad y
-            ciudad, y cada una llega distinta: la capital, el Taj Mahal y el Rajastán. Puedes
-            hacer las tres o quedarte más tiempo en la que te llame.
+            {c.route.intro}
           </p>
         </Reveal>
 
@@ -127,7 +127,7 @@ export function RouteSection() {
                 key={destination.slug}
                 className={index % 2 === 1 ? "lg:translate-y-10" : ""}
               >
-                <DestinationCard destination={destination} index={index} />
+                <DestinationCard destination={destination} index={index} lang={lang} />
               </li>
             ))}
           </ol>
@@ -152,7 +152,7 @@ export function RouteSection() {
                   aria-hidden="true"
                   className="absolute top-2 left-0 block size-[15px] rounded-full border-2 border-marigold bg-indigo sm:hidden"
                 />
-                <DestinationCard destination={destination} index={index} />
+                <DestinationCard destination={destination} index={index} lang={lang} />
               </Reveal>
             ))}
           </ol>
@@ -165,16 +165,19 @@ export function RouteSection() {
 function DestinationCard({
   destination,
   index,
+  lang,
 }: {
-  destination: (typeof destinations)[number];
+  destination: Destination;
   index: number;
+  lang: Lang;
 }) {
+  const copy = content[lang].route.items[destination.slug];
   return (
     <article className="group">
       <div className="relative overflow-hidden rounded-2xl border hairline">
         <MediaFrame
           photo={destination.photo}
-          alt={destination.photoAlt}
+          alt={copy.photoAlt}
           scene={destination.slug}
           sizes="(max-width: 1024px) 100vw, 25vw"
           className="aspect-5/4 w-full"
@@ -184,13 +187,13 @@ function DestinationCard({
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>
-      <h3 className="display mt-5 text-[1.7rem] text-mist">{destination.name}</h3>
+      <h3 className="display mt-5 text-[1.7rem] text-mist">{copy.name}</h3>
       <p className="mt-1 text-[0.72rem] tracking-[0.16em] text-mist-3 uppercase">
-        {destination.state}
+        {copy.state}
       </p>
-      <p className="mt-3 text-[0.95rem] leading-relaxed text-mist-2">{destination.description}</p>
+      <p className="mt-3 text-[0.95rem] leading-relaxed text-mist-2">{copy.description}</p>
       <ul className="mt-4 flex flex-wrap gap-2">
-        {destination.highlights.map((highlight) => (
+        {copy.highlights.map((highlight) => (
           <li
             key={highlight}
             className="rounded-full border border-white/12 px-2.5 py-1 text-[0.75rem] text-mist-2"

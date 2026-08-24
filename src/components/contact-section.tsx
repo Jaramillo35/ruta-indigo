@@ -9,13 +9,13 @@ import {
   whatsappConfigured,
   whatsappLink,
 } from "@/content/site.config";
+import { content, routes, type Lang } from "@/content/i18n";
 
-export function ContactSection() {
-  const waHref = whatsappLink("Hola, me gustaría información para un viaje privado por India.");
-  const mailHref = mailtoLink("Consulta sobre un viaje a India");
-  const agencyHref = `mailto:${agencyEmail}?subject=${encodeURIComponent(
-    "Agencia de viajes — colaboración",
-  )}`;
+export function ContactSection({ lang }: { lang: Lang }) {
+  const c = content[lang];
+  const waHref = whatsappLink(c.contact.whatsappMessage);
+  const mailHref = mailtoLink(c.contact.emailSubject);
+  const agencyHref = `mailto:${agencyEmail}?subject=${encodeURIComponent(c.contact.agency.subject)}`;
 
   return (
     <section id="contacto" className="grain relative overflow-hidden bg-ink">
@@ -27,14 +27,13 @@ export function ContactSection() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Reveal>
-              <Kicker className="text-marigold">Contacto</Kicker>
+              <Kicker className="text-marigold">{c.contact.kicker}</Kicker>
               <h2 className="display mt-6 text-[clamp(2.1rem,5.6vw,3.6rem)] text-mist">
-                Cuéntanos cómo
-                <span className="block italic text-sandstone">quieres viajar.</span>
+                {c.contact.heading}
+                <span className="block italic text-sandstone">{c.contact.headingAccent}</span>
               </h2>
               <p className="prose-lead mt-6 max-w-md text-[1rem] leading-relaxed text-mist-2">
-                Con tus fechas aproximadas y cuántos son ya podemos proponerte algo. No hay
-                compromiso ni pagos en línea: primero la propuesta, después decides.
+                {c.contact.intro}
               </p>
             </Reveal>
 
@@ -49,9 +48,9 @@ export function ContactSection() {
                   <span className="flex items-center gap-3">
                     <WhatsAppGlyph className="text-marigold" />
                     <span>
-                      <span className="block text-[0.95rem]">Escríbenos por WhatsApp</span>
+                      <span className="block text-[0.95rem]">{c.contact.whatsappTitle}</span>
                       <span className="block text-[0.8rem] text-mist-3">
-                        {site.contact.whatsappDisplay || "Respuesta directa, sin formularios"}
+                        {site.contact.whatsappDisplay || c.contact.whatsappFallback}
                       </span>
                     </span>
                   </span>
@@ -66,7 +65,7 @@ export function ContactSection() {
                 >
                   <span>
                     <span className="block text-[0.95rem]">{site.contact.email}</span>
-                    <span className="block text-[0.8rem] text-mist-3">{site.contact.responseTime}</span>
+                    <span className="block text-[0.8rem] text-mist-3">{c.footer.responseTime}</span>
                   </span>
                   <ArrowRight className="text-marigold transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
@@ -75,16 +74,15 @@ export function ContactSection() {
 
             {/* Secondary pathway: agencies and referral partners. */}
             <Reveal delay={140} className="mt-8 rounded-2xl border hairline bg-linear-to-br from-dusk/40 to-transparent p-6">
-              <h3 className="display text-[1.35rem] text-mist">¿Eres una agencia de viajes?</h3>
+              <h3 className="display text-[1.35rem] text-mist">{c.contact.agency.title}</h3>
               <p className="mt-2 text-[0.92rem] leading-relaxed text-mist-2">
-                Trabajamos con agencias y colegas que necesitan un operador en India con atención
-                en español. Escríbenos y platicamos cómo podemos apoyarte.
+                {c.contact.agency.body}
               </p>
               <a
                 href={agencyHref}
                 className="pressable mt-4 inline-flex items-center gap-2 py-1.5 text-[0.9rem] text-marigold underline underline-offset-4 hover:text-mist"
               >
-                Conversemos
+                {c.contact.agency.cta}
                 <ArrowRight />
               </a>
             </Reveal>
@@ -92,7 +90,7 @@ export function ContactSection() {
 
           <Reveal delay={60} className="lg:col-span-7">
             <div className="rounded-[1.75rem] border border-white/10 bg-paper p-6 shadow-[0_40px_80px_-40px_rgba(0,0,0,0.9)] sm:p-9">
-              <ContactForm />
+              <ContactForm lang={lang} privacyHref={routes[lang].privacy} />
             </div>
           </Reveal>
         </div>

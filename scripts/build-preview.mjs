@@ -62,6 +62,23 @@ const readConfig = (key) => (config.match(new RegExp(`\\n\\s*${key}:\\s*"([^"]*)
 const email = readConfig("email");
 const whatsapp = readConfig("whatsapp");
 
+/*
+ * A single file cannot hold the other pages, so every internal link — the
+ * language toggle, the legal notices — is pointed at the published site.
+ * Without this the toggle in the shared preview would go nowhere.
+ */
+const linkBase = (
+  process.env.PREVIEW_LINK_BASE ??
+  (config.match(/publishedUrl:\s*"([^"]*)"/) || [, ""])[1]
+).replace(/\/$/, "");
+
+if (linkBase) {
+  body = body.replace(/href="(\/[^"#][^"]*)"/g, (whole, path) => {
+    if (path.startsWith("//")) return whole;
+    return `href="${linkBase}${path}"`;
+  });
+}
+
 body = body.replace(
   /<form /,
   `<form data-preview-email="${email}" data-preview-whatsapp="${whatsapp}" `,

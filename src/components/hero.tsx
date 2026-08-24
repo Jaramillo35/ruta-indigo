@@ -1,8 +1,10 @@
 import { HeroBackdrop } from "@/components/art/hero-backdrop";
 import { Cta, ArrowRight } from "@/components/ui";
 import { destinations } from "@/content/destinations";
+import { content, type Lang } from "@/content/i18n";
 
-export function Hero() {
+export function Hero({ lang }: { lang: Lang }) {
+  const c = content[lang];
   return (
     <section id="inicio" className="grain relative isolate flex min-h-[92svh] flex-col justify-end overflow-hidden pt-32 pb-0">
       <HeroBackdrop />
@@ -15,24 +17,22 @@ export function Hero() {
               style={{ "--rise-delay": "80ms" } as React.CSSProperties}
             >
               <span aria-hidden="true" className="h-px w-10 bg-current opacity-60" />
-              Viajes privados por India
+              {c.hero.eyebrow}
             </p>
 
             <h1
               className="display rise mt-5 text-[clamp(2.9rem,10.5vw,6.4rem)] text-mist"
               style={{ "--rise-delay": "160ms" } as React.CSSProperties}
             >
-              Descubre India
-              <span className="block italic text-marigold">en tu idioma.</span>
+              {c.hero.title}
+              <span className="block italic text-marigold">{c.hero.titleAccent}</span>
             </h1>
 
             <p
               className="prose-lead rise mt-7 max-w-xl text-[1.05rem] leading-relaxed text-mist-2 sm:text-[1.15rem]"
               style={{ "--rise-delay": "260ms" } as React.CSSProperties}
             >
-              Diseñamos viajes privados por India para ti y para los tuyos, con acompañamiento
-              real en español. Sin traductor de por medio, sin autobuses de cuarenta personas:
-              una ruta pensada para tu ritmo.
+              {c.hero.lead}
             </p>
 
             <div
@@ -40,11 +40,11 @@ export function Hero() {
               style={{ "--rise-delay": "360ms" } as React.CSSProperties}
             >
               <Cta href="#contacto">
-                Diseña tu viaje
+                {c.hero.ctaPrimary}
                 <ArrowRight />
               </Cta>
               <Cta href="#experiencias" variant="ghost">
-                Explora las rutas
+                {c.hero.ctaSecondary}
               </Cta>
             </div>
 
@@ -52,8 +52,7 @@ export function Hero() {
               className="rise mt-8 text-[0.8rem] tracking-[0.14em] text-mist-2/80 uppercase"
               style={{ "--rise-delay": "460ms" } as React.CSSProperties}
             >
-              Tours privados <span aria-hidden="true">·</span> Atención en español{" "}
-              <span aria-hidden="true">·</span> Itinerarios personalizados
+              {c.hero.trust.join(" · ")}
             </p>
           </div>
         </div>
@@ -65,7 +64,7 @@ export function Hero() {
           <div className="mx-auto max-w-7xl px-5 py-4 sm:px-8">
             <div className="flex items-center gap-4 sm:justify-between">
               <span className="hidden shrink-0 text-[0.7rem] tracking-[0.22em] text-mist-2 uppercase md:block">
-                La ruta
+                {c.hero.routeLabel}
               </span>
               <ol className="flex flex-1 items-center justify-between gap-1 sm:gap-4 md:flex-none md:justify-end">
                 {destinations.map((destination, index) => (
@@ -85,7 +84,7 @@ export function Hero() {
                         aria-hidden="true"
                         className="block size-1.5 rounded-full bg-marigold transition-transform duration-300 group-hover:scale-150"
                       />
-                      {destination.name}
+                      {c.route.items[destination.slug].name}
                     </a>
                   </li>
                 ))}

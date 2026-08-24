@@ -10,8 +10,8 @@ import {
   type LeadErrors,
   type LeadResult,
 } from "@/lib/lead";
-import { destinationOptions, travellerRanges, tripTypes } from "@/content/copy";
-import { site } from "@/content/site.config";
+import { destinations } from "@/content/destinations";
+import { content, type Content, type Lang } from "@/content/i18n";
 import { ArrowRight, WhatsAppGlyph } from "@/components/ui";
 
 const countries = [
@@ -31,7 +31,17 @@ const countries = [
 
 type Status = "idle" | "sending" | "done";
 
-export function ContactForm() {
+export function ContactForm({ lang, privacyHref }: { lang: Lang; privacyHref: string }) {
+  const c: Content["form"] = content[lang].form;
+  /* The destination choices are the destinations actually on offer, named in
+     the language being read, plus the "recommend me something" escape hatch. */
+  const destinationOptions = [
+    ...destinations.map((destination) => ({
+      value: destination.slug as string,
+      label: content[lang].route.items[destination.slug].name,
+    })),
+    { value: "recomendacion", label: c.recommendation },
+  ];
   const id = useId();
   const [lead, setLead] = useState<Lead>(emptyLead);
   const [errors, setErrors] = useState<LeadErrors>({});
@@ -59,7 +69,7 @@ export function ContactForm() {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const found = validateLead(lead);
+    const found = validateLead(lead, c);
     setErrors(found);
 
     if (Object.keys(found).length > 0) {
@@ -73,7 +83,7 @@ export function ContactForm() {
     }
 
     setStatus("sending");
-    const outcome = await submitLead(lead);
+    const outcome = await submitLead(lead, c, lang);
     setResult(outcome);
     setStatus("done");
   }
@@ -82,12 +92,13 @@ export function ContactForm() {
     return (
       <Outcome
         result={result}
-        message={buildLeadMessage(lead)}
+        message={buildLeadMessage(lead, c)}
         nombre={lead.nombre}
+        copy={c}
         copied={copied}
         onCopy={async () => {
           try {
-            await navigator.clipboard.writeText(buildLeadMessage(lead));
+            await navigator.clipboard.writeText(buildLeadMessage(lead, c));
             setCopied(true);
           } catch {
             setCopied(false);
@@ -106,13 +117,13 @@ export function ContactForm() {
   return (
     <form ref={formRef} onSubmit={onSubmit} noValidate className="flex flex-col gap-6">
       <div className="grid gap-5 sm:grid-cols-2">
-        <Row label="Nombre" htmlFor={`${id}-nombre`} error={errors.nombre} errorId={`${id}-nombre-error`} required>
+        <Row label={c.nombre.label} htmlFor={`${id}-nombre`} error={errors.nombre} errorId={`${id}-nombre-error`} required>
           <input
             id={`${id}-nombre`}
             name="nombre"
             className="field"
             autoComplete="name"
-            placeholder="Cómo te llamas"
+            placeholder={c.nombre.placeholder}
             value={lead.nombre}
             aria-invalid={Boolean(errors.nombre)}
             aria-describedby={describe("nombre")}
@@ -120,7 +131,7 @@ export function ContactForm() {
           />
         </Row>
 
-        <Row label="Email" htmlFor={`${id}-email`} error={errors.email} errorId={`${id}-email-error`} required>
+        <Row label={c.email.label} htmlFor={`${id}-email`} error={errors.email} errorId={`${id}-email-error`} required>
           <input
             id={`${id}-email`}
             name="email"
@@ -128,7 +139,7 @@ export function ContactForm() {
             inputMode="email"
             className="field"
             autoComplete="email"
-            placeholder="tucorreo@ejemplo.com"
+            placeholder={c.email.placeholder}
             value={lead.email}
             aria-invalid={Boolean(errors.email)}
             aria-describedby={describe("email")}
@@ -137,11 +148,11 @@ export function ContactForm() {
         </Row>
 
         <Row
-          label="WhatsApp o teléfono"
+          label={c.telefono.label}
           htmlFor={`${id}-telefono`}
           error={errors.telefono}
           errorId={`${id}-telefono-error`}
-          hint="Con clave de país, por ejemplo +52 55 1234 5678."
+          hint={c.telefono.hint}
           hintId={`${id}-telefono-hint`}
         >
           <input
@@ -151,7 +162,7 @@ export function ContactForm() {
             inputMode="tel"
             className="field"
             autoComplete="tel"
-            placeholder="+52 55 1234 5678"
+            placeholder={c.telefono.placeholder}
             value={lead.telefono}
             aria-invalid={Boolean(errors.telefono)}
             aria-describedby={describe("telefono", "hint")}
@@ -159,14 +170,14 @@ export function ContactForm() {
           />
         </Row>
 
-        <Row label="País de residencia" htmlFor={`${id}-pais`}>
+        <Row label={c.pais.label} htmlFor={`${id}-pais`}>
           <input
             id={`${id}-pais`}
             name="pais"
             className="field"
             list={`${id}-paises`}
             autoComplete="country-name"
-            placeholder="México"
+            placeholder={c.pais.placeholder}
             value={lead.pais}
             onChange={(event) => field("pais", event.target.value)}
           />
@@ -178,23 +189,23 @@ export function ContactForm() {
         </Row>
 
         <Row
-          label="Fechas aproximadas"
+          label={c.fechas.label}
           htmlFor={`${id}-fechas`}
-          hint="Un mes o una temporada basta. Todavía no necesitas fechas exactas."
+          hint={c.fechas.hint}
           hintId={`${id}-fechas-hint`}
         >
           <input
             id={`${id}-fechas`}
             name="fechas"
             className="field"
-            placeholder="Segunda quincena de marzo"
+            placeholder={c.fechas.placeholder}
             value={lead.fechas}
             aria-describedby={`${id}-fechas-hint`}
             onChange={(event) => field("fechas", event.target.value)}
           />
         </Row>
 
-        <Row label="Número de viajeros" htmlFor={`${id}-viajeros`}>
+        <Row label={c.viajeros.label} htmlFor={`${id}-viajeros`}>
           <select
             id={`${id}-viajeros`}
             name="viajeros"
@@ -202,10 +213,10 @@ export function ContactForm() {
             value={lead.viajeros}
             onChange={(event) => field("viajeros", event.target.value)}
           >
-            <option value="">Selecciona</option>
-            {travellerRanges.map((range) => (
+            <option value="">{c.viajeros.placeholder}</option>
+            {c.travellerRanges.map((range) => (
               <option key={range} value={range}>
-                {range} {range === "1" ? "viajero" : "viajeros"}
+                {range} {range === "1" ? c.viajeroSingular : c.viajeroPlural}
               </option>
             ))}
           </select>
@@ -214,7 +225,7 @@ export function ContactForm() {
 
       <fieldset>
         <legend className="text-[0.82rem] font-medium tracking-wide text-ink">
-          Destinos de interés <span className="text-clay">*</span>
+          {c.destinos.label} <span className="text-clay">*</span>
         </legend>
         <div className="mt-3 flex flex-wrap gap-2">
           {destinationOptions.map((option, index) => {
@@ -254,9 +265,9 @@ export function ContactForm() {
       </fieldset>
 
       <fieldset>
-        <legend className="text-[0.82rem] font-medium tracking-wide text-ink">Tipo de viaje</legend>
+        <legend className="text-[0.82rem] font-medium tracking-wide text-ink">{c.tipoViaje.label}</legend>
         <div className="mt-3 flex flex-wrap gap-2">
-          {tripTypes.map((type) => {
+          {c.tripTypes.map((type) => {
             const checked = lead.tipoViaje === type;
             return (
               <label
@@ -283,9 +294,9 @@ export function ContactForm() {
       </fieldset>
 
       <Row
-        label="Cuéntanos lo que tengas en mente"
+        label={c.mensaje.label}
         htmlFor={`${id}-mensaje`}
-        hint="Con quién viajas, qué te interesa, si hay niños o adultos mayores, cuántos días tienes."
+        hint={c.mensaje.hint}
         hintId={`${id}-mensaje-hint`}
       >
         <textarea
@@ -293,7 +304,7 @@ export function ContactForm() {
           name="mensaje"
           rows={4}
           className="field resize-y"
-          placeholder="Somos dos, nos interesa el Taj Mahal y unos días tranquilos al final…"
+          placeholder={c.mensaje.placeholder}
           value={lead.mensaje}
           aria-describedby={`${id}-mensaje-hint`}
           onChange={(event) => field("mensaje", event.target.value)}
@@ -312,10 +323,9 @@ export function ContactForm() {
             onChange={(event) => field("privacidad", event.target.checked)}
           />
           <span>
-            Autorizo que usen mis datos para responder a esta solicitud y prepararme una
-            propuesta de viaje. Nada más.{" "}
-            <a href={site.legal.privacyHref} className="underline underline-offset-2 hover:text-clay">
-              Aviso de privacidad
+            {c.privacidad.text}{" "}
+            <a href={privacyHref} className="underline underline-offset-2 hover:text-clay">
+              {c.privacidad.link}
             </a>
             .
           </span>
@@ -325,24 +335,23 @@ export function ContactForm() {
 
       <div className="flex flex-col gap-4 border-t border-ink/12 pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-xs text-[0.8rem] leading-relaxed text-ink/60">
-          Te respondemos personalmente. No compartimos tus datos con terceros ni te inscribimos
-          a ninguna lista.
+          {c.reassurance}
         </p>
         <button
           type="submit"
           disabled={status === "sending"}
           className="pressable inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-b from-marigold to-saffron px-7 py-3.5 text-[0.95rem] font-medium text-night shadow-[0_10px_30px_-12px_rgba(226,112,31,0.9)] disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {status === "sending" ? "Preparando…" : "Enviar solicitud"}
+          {status === "sending" ? c.submitting : c.submit}
           {status !== "sending" && <ArrowRight />}
         </button>
       </div>
 
       <p aria-live="polite" className="sr-only">
         {Object.keys(errors).length > 0
-          ? "El formulario tiene campos por revisar."
+          ? c.errors.review
           : status === "sending"
-            ? "Preparando tu solicitud."
+            ? c.errors.preparing
             : ""}
       </p>
     </form>
@@ -402,6 +411,7 @@ function Outcome({
   result,
   message,
   nombre,
+  copy,
   copied,
   onCopy,
   onReset,
@@ -409,32 +419,29 @@ function Outcome({
   result: LeadResult;
   message: string;
   nombre: string;
+  copy: Content["form"];
   copied: boolean;
   onCopy: () => void;
   onReset: () => void;
 }) {
   const firstName = nombre.trim().split(" ")[0];
+  const o = copy.outcome;
+  const named = (title: string) => `${title}${firstName ? `, ${firstName}` : ""}.`;
 
   return (
     <div role="status" aria-live="polite" className="flex flex-col gap-5 text-ink">
       {result.kind === "sent" && (
         <>
-          <h3 className="display text-[1.9rem]">Recibimos tu solicitud{firstName ? `, ${firstName}` : ""}.</h3>
-          <p className="text-[1rem] leading-relaxed text-ink/75">
-            Te vamos a escribir personalmente con una propuesta de ruta. {site.contact.responseTime}
-          </p>
+          <h3 className="display text-[1.9rem]">{named(o.sentTitle)}</h3>
+          <p className="text-[1rem] leading-relaxed text-ink/75">{o.sentBody}</p>
         </>
       )}
 
       {result.kind === "handoff" && (
         <>
-          <h3 className="display text-[1.9rem]">
-            Tu mensaje está listo{firstName ? `, ${firstName}` : ""}.
-          </h3>
+          <h3 className="display text-[1.9rem]">{named(o.handoffTitle)}</h3>
           <p className="text-[1rem] leading-relaxed text-ink/75">
-            Todavía no lo hemos recibido: falta un paso. Abre{" "}
-            {result.channel === "whatsapp" ? "WhatsApp" : "tu correo"} con el botón de abajo —el
-            mensaje ya va escrito con todos tus datos— y presiona enviar.
+            {result.channel === "whatsapp" ? o.handoffWhatsApp : o.handoffEmail}
           </p>
           <a
             href={result.href}
@@ -443,7 +450,7 @@ function Outcome({
             className="pressable inline-flex w-fit items-center gap-2 rounded-full bg-linear-to-b from-marigold to-saffron px-7 py-3.5 text-[0.95rem] font-medium text-night"
           >
             {result.channel === "whatsapp" ? <WhatsAppGlyph /> : null}
-            {result.channel === "whatsapp" ? "Abrir WhatsApp con mi mensaje" : "Abrir mi correo"}
+            {result.channel === "whatsapp" ? o.openWhatsApp : o.openEmail}
             <ArrowRight />
           </a>
         </>
@@ -451,13 +458,13 @@ function Outcome({
 
       {result.kind === "error" && (
         <>
-          <h3 className="display text-[1.9rem]">No pudimos enviar tu solicitud.</h3>
+          <h3 className="display text-[1.9rem]">{o.errorTitle}</h3>
           <p className="text-[1rem] leading-relaxed text-ink/75">{result.message}</p>
         </>
       )}
 
       <details className="rounded-2xl border border-ink/15 bg-white/50 p-4">
-        <summary className="cursor-pointer text-[0.88rem] font-medium">Ver el mensaje</summary>
+        <summary className="cursor-pointer text-[0.88rem] font-medium">{o.seeMessage}</summary>
         <pre className="mt-3 max-h-56 overflow-auto text-[0.82rem] leading-relaxed whitespace-pre-wrap text-ink/75">
           {message}
         </pre>
@@ -466,7 +473,7 @@ function Outcome({
           onClick={onCopy}
           className="pressable mt-3 rounded-full border border-ink/20 px-4 py-2 text-[0.82rem] hover:border-ink/40 hover:bg-white"
         >
-          {copied ? "Copiado" : "Copiar mensaje"}
+          {copied ? o.copied : o.copy}
         </button>
       </details>
 
@@ -475,7 +482,7 @@ function Outcome({
         onClick={onReset}
         className="pressable w-fit text-[0.88rem] text-clay underline underline-offset-4"
       >
-        Enviar otra solicitud
+        {o.again}
       </button>
     </div>
   );

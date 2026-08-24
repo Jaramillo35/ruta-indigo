@@ -27,11 +27,10 @@ ilustración es SVG en línea. La única dependencia de runtime es el propio fra
 
 | Qué | Archivo |
 | --- | --- |
+| **Todo el texto, en español e inglés** | `src/content/i18n.ts` |
 | Nombre, correo, WhatsApp, redes, dominio, links legales | `src/content/site.config.ts` |
-| Destinos (texto, highlights, fotos) | `src/content/destinations.ts` |
-| Experiencias / rutas | `src/content/journeys.ts` |
-| Beneficios, pasos, razones, preguntas frecuentes, opciones del formulario | `src/content/copy.ts` |
-| Navegación | `src/content/navigation.ts` |
+| Destinos: qué se ofrece y con qué foto | `src/content/destinations.ts` |
+| Experiencias: cuáles y con qué foto | `src/content/journeys.ts` |
 | Fotografía publicada | `public/images/` (ver `public/images/README.md`) |
 | Material en bruto, marca y documentos | `assets/` (ver `assets/README.md`) |
 
@@ -85,6 +84,23 @@ antes de que exista dominio. `preview/local-check.html` es el mismo archivo con
 
 Lleva un aviso, visible solo ahí, que advierte que el nombre y los datos de contacto
 son provisionales y que el formulario todavía no envía nada.
+
+## Dos idiomas
+
+El sitio se publica en español (`/`) y en inglés (`/en`). No es un cambio de
+estado en el navegador: **cada idioma es su propia página**, con su URL, su
+`<html lang>`, sus metadatos y sus enlaces `hreflang`, así que se puede
+compartir, marcar y indexar por separado. El botón de la cabecera es un enlace
+entre las dos.
+
+Todo el texto de las dos versiones vive junto en `src/content/i18n.ts`. El
+inglés está tipado contra el español (`export const en: Content`), de modo que
+si se agrega una frase en un idioma y falta en el otro, **no compila**. Los
+datos que no son texto —qué destinos se ofrecen, qué foto lleva cada uno— siguen
+en `destinations.ts` y `journeys.ts`, y el texto se busca por su `slug`.
+
+Para agregar un idioma: copiar el bloque `en`, traducirlo, sumarlo a `content` y
+`languages`, y crear su grupo de rutas en `src/app/`.
 
 ## Estructura
 

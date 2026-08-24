@@ -1,23 +1,23 @@
 /**
- * Destinations. Today the offer is the Golden Triangle only; Rishikesh is out
- * until the client is ready to run it. The "rishikesh" slug and its illustration
- * are still supported, so bringing it back is one entry in this array.
+ * Destinations — the facts that do not change with language.
  *
- * Destinations. `photo` is null until the client sends real photography — the
- * component then renders the illustrated scene for that slug instead. Dropping
- * a file in /public/images and writing its path here is the whole swap; the
- * aspect ratio is fixed by the component so nothing shifts when it loads.
+ * The words (name, description, highlights, alt text) live in i18n.ts, keyed by
+ * these slugs, so a second language is a translation rather than a second copy
+ * of the photo paths.
+ *
+ * Today the offer is the Golden Triangle only; Rishikesh is out until the client
+ * is ready to run it, though its slug and illustration are still supported.
+ *
+ * `photo` is null until real photography arrives — the component then renders
+ * the illustrated scene for that slug instead. Dropping a file in /public/images
+ * and writing its path here is the whole swap; the aspect ratio is fixed by the
+ * component, so nothing shifts when it loads.
  */
+export type DestinationSlug = "delhi" | "agra" | "jaipur" | "rishikesh";
+
 export type Destination = {
-  slug: "delhi" | "agra" | "jaipur" | "rishikesh";
-  name: string;
-  state: string;
+  slug: DestinationSlug;
   order: number;
-  /** One line for the route map node. */
-  short: string;
-  /** Two or three sentences for the destination card. */
-  description: string;
-  highlights: string[];
   /**
    * Ruta pública de la foto, o null para usar la ilustración del lugar.
    * Cada destino tiene su carpeta: /images/destinos/<slug>/
@@ -25,47 +25,10 @@ export type Destination = {
    * Ver public/images/README.md
    */
   photo: string | null;
-  photoAlt: string;
 };
 
 export const destinations: Destination[] = [
-  {
-    slug: "delhi",
-    name: "Delhi",
-    state: "Territorio de la Capital Nacional",
-    order: 1,
-    short: "El punto de llegada y el primer contacto con India.",
-    description:
-      "Casi todos los viajes empiezan aquí. Delhi mezcla la ciudad vieja —callejones, especias, mercados que llevan siglos abiertos— con avenidas amplias y monumentos coloniales. Es el mejor lugar para acomodar el cuerpo al cambio de horario sin perder el día.",
-    highlights: ["Old Delhi y sus mercados", "Qutub Minar", "Puerta de India", "Comida callejera con guía"],
-    photo: "/images/destinos/delhi/tumba-humayun.jpg",
-    photoAlt:
-      "La tumba de Humayun en Delhi: arenisca roja y mármol blanco bajo su gran cúpula, entre palmeras",
-  },
-  {
-    slug: "agra",
-    name: "Agra",
-    state: "Uttar Pradesh",
-    order: 2,
-    short: "El Taj Mahal y la orilla del Yamuna.",
-    description:
-      "El Taj Mahal cambia de color con la luz, y a qué hora lo visitas cambia por completo la experiencia. Agra también guarda su fuerte de arenisca roja y talleres donde todavía se trabaja el mármol incrustado a mano.",
-    highlights: ["Taj Mahal", "Fuerte de Agra", "Talleres de marquetería en mármol", "Mirador del Yamuna"],
-    photo: "/images/destinos/agra/taj-mahal.jpg",
-    photoAlt:
-      "El Taj Mahal desde los jardines, reflejado en el canal de agua que lleva hasta su entrada",
-  },
-  {
-    slug: "jaipur",
-    name: "Jaipur",
-    state: "Rajastán",
-    order: 3,
-    short: "Rajastán en rosa: palacios, textiles y color.",
-    description:
-      "La ciudad rosa es la parte más fotogénica del Triángulo Dorado y la favorita de quienes viajan en familia. Palacios, un observatorio del siglo XVIII y bazares de textiles y joyería donde conviene ir acompañado de alguien que conozca los precios.",
-    highlights: ["Hawa Mahal", "Fuerte Amber", "Jantar Mantar", "Bazares de textiles"],
-    photo: "/images/destinos/jaipur/hawa-mahal.jpg",
-    photoAlt:
-      "La fachada del Hawa Mahal en Jaipur, con sus cientos de ventanas de arenisca rosa contra el cielo",
-  },
+  { slug: "delhi", order: 1, photo: "/images/destinos/delhi/tumba-humayun.jpg" },
+  { slug: "agra", order: 2, photo: "/images/destinos/agra/taj-mahal.jpg" },
+  { slug: "jaipur", order: 3, photo: "/images/destinos/jaipur/hawa-mahal.jpg" },
 ];
