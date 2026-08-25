@@ -32,7 +32,7 @@ export const site = {
 
   contact: {
     /** Replace with the real inbox. Empty string hides every email CTA. */
-    email: "mlabastidag@gmail.com",
+    email: "hola@migryantravels.com",
     /** Inbox for travel agencies / referral partners. Falls back to `email`. */
     agencyEmail: "",
     /**
