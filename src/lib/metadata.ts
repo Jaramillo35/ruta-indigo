@@ -63,6 +63,8 @@ export function pageMetadata(lang: Lang, doc?: "privacy" | "terms"): Metadata {
     },
     /* The Pages preview lives on a temporary domain — keep it out of search
        results until the real domain is live. */
+    /* Un despliegue de vista previa vive bajo un sub-path y no debe indexarse
+       antes que el dominio real; el dominio propio sí. */
     robots: process.env.BASE_PATH ? { index: false, follow: false } : { index: true, follow: true },
   };
 }

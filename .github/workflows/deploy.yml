@@ -1,7 +1,8 @@
 # Builds the site and publishes it to GitHub Pages on every push to main.
 #
-# BASE_PATH is the repository name because a project site is served from
-# https://<user>.github.io/<repo>/ — without it every asset would 404.
+# El sitio se sirve en migryantravels.com (ver public/CNAME), o sea desde la
+# raíz: no lleva BASE_PATH. Si alguna vez vuelve a publicarse bajo
+# usuario.github.io/repo, hay que reponerlo o todos los recursos dan 404.
 name: Deploy to GitHub Pages
 
 on:
@@ -28,30 +29,25 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # En dominio propio el sitio vive en la raíz: sin BASE_PATH. El dominio
+      # sale de public/CNAME, que es también lo que lee GitHub Pages.
       - name: Dirección donde se publica
-        run: |
-          owner=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
-          echo "SITE_URL=https://$owner.github.io/${{ github.event.repository.name }}/" >> "$GITHUB_ENV"
+        run: echo "SITE_URL=https://$(cat public/CNAME)/" >> "$GITHUB_ENV"
 
       - run: npm run build:pages
         env:
           STATIC_EXPORT: "1"
-          BASE_PATH: /${{ github.event.repository.name }}
       # trailingSlash puts the 404 page at 404/index.html; Pages looks for it at
       # the root, so leave a copy there or a bad URL gets GitHub's generic 404.
       - name: Custom 404 en la raíz
         run: cp out/404/index.html out/404.html
 
 
-      # next/image no antepone el basePath en un export sin optimizar: si alguna
-      # imagen sale con la ruta pelada, en Pages da 404. Mejor romper aquí.
-      - name: Verificar rutas de imágenes
-        run: |
-          if grep -q 'src="/images/' out/index.html; then
-            echo "Hay imágenes sin basePath; se romperían en Pages. Usa asset()." >&2
-            grep -o 'src="/images/[^"]*"' out/index.html | sort -u >&2
-            exit 1
-          fi
+      # Que todo lo que el HTML pide exista en el export. next/image no antepone
+      # el basePath en un export sin optimizar, y esa clase de fallo ya rompió
+      # las imágenes una vez: aquí revienta la compilación, no el sitio.
+      - name: Verificar recursos
+        run: node scripts/check-assets.mjs
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
