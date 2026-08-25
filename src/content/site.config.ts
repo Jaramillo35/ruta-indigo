@@ -32,7 +32,7 @@ export const site = {
 
   contact: {
     /** Replace with the real inbox. Empty string hides every email CTA. */
-    email: "contacto@example.com",
+    email: "mlabastidag@gmail.com",
     /** Inbox for travel agencies / referral partners. Falls back to `email`. */
     agencyEmail: "",
     /**
@@ -41,9 +41,9 @@ export const site = {
      * Left empty until the client confirms the number — while it is empty every
      * WhatsApp call to action falls back to email instead of linking nowhere.
      */
-    whatsapp: "",
+    whatsapp: "525510480027",
     /** How the number should read on screen, e.g. "+52 55 1234 5678". */
-    whatsappDisplay: "",
+    whatsappDisplay: "+52 55 1048 0027",
     /** Free text under the footer contact block. */
     responseTime: "Respondemos personalmente, normalmente en menos de 24 horas.",
     /** Where the team is based. Shown in the footer and in structured data. */

@@ -135,7 +135,7 @@ export const es = {
         exampleDays: "5 a 8 días",
         bestFor: "Primera vez en India · Parejas y familias",
         photoAlt:
-          "La gran puerta de arenisca roja que da entrada al recinto del Taj Mahal, con sus cúpulas blancas en lo alto",
+          "Un grupo de viajeros posando frente a la gran puerta de arenisca roja del Taj Mahal",
       },
       "india-a-tu-manera": {
         name: "India a tu manera",
@@ -306,6 +306,21 @@ export const es = {
     ],
   },
 
+  gallery: {
+    kicker: "Quiénes ya fueron",
+    heading: "No es una foto de catálogo:",
+    headingAccent: "son viajeros que ya estuvieron ahí.",
+    intro:
+      "Familias y viajeros que hicieron este mismo recorrido, en sus propias fotos. Así se ve un día cualquiera del viaje.",
+    note: "Fotografías de nuestros viajeros, publicadas con su permiso.",
+    alts: {
+      "grupo-taj": "Un grupo de viajeros latinos vestidos con saris frente al Taj Mahal",
+      "viajera-humayun": "Una viajera caminando bajo los arcos de la tumba de Humayun, en Delhi",
+      pozo: "El pozo escalonado de Agrasen ki Baoli, en Delhi, con sus escaleras de piedra",
+      arco: "Arcos de arenisca roja enmarcando una tumba de mármol blanco",
+    },
+  },
+
   contact: {
     kicker: "Contacto",
     heading: "Cuéntanos cómo",
@@ -313,6 +328,8 @@ export const es = {
     intro:
       "Con tus fechas aproximadas y cuántos son ya podemos proponerte algo. No hay compromiso ni pagos en línea: primero la propuesta, después decides.",
     whatsappTitle: "Escríbenos por WhatsApp",
+    /** Versión corta, para la cabecera, donde el espacio es el que es. */
+    whatsappShort: "WhatsApp",
     whatsappFallback: "Respuesta directa, sin formularios",
     whatsappMessage: "Hola, me gustaría información para un viaje privado por India.",
     emailSubject: "Consulta sobre un viaje a India",
@@ -637,7 +654,7 @@ export const en: Content = {
         exampleDays: "5 to 8 days",
         bestFor: "First time in India · Couples and families",
         photoAlt:
-          "The great red sandstone gateway into the Taj Mahal grounds, its white domes along the top",
+          "A group of travellers in front of the great red sandstone gateway of the Taj Mahal",
       },
       "india-a-tu-manera": {
         name: "India your way",
@@ -806,6 +823,21 @@ export const en: Content = {
     ],
   },
 
+  gallery: {
+    kicker: "Who has already been",
+    heading: "Not a catalogue photograph:",
+    headingAccent: "these are travellers who were there.",
+    intro:
+      "Families and travellers who did this same route, in their own photographs. This is what an ordinary day of the trip looks like.",
+    note: "Photographs of our travellers, published with their permission.",
+    alts: {
+      "grupo-taj": "A group of Latin American travellers in saris in front of the Taj Mahal",
+      "viajera-humayun": "A traveller walking beneath the arches of Humayun's Tomb, in Delhi",
+      pozo: "The Agrasen ki Baoli stepwell in Delhi, with its long stone stairs",
+      arco: "Red sandstone arches framing a white marble tomb",
+    },
+  },
+
   contact: {
     kicker: "Contact",
     heading: "Tell us how",
@@ -813,6 +845,7 @@ export const en: Content = {
     intro:
       "Your rough dates and how many of you there are is enough for us to propose something. No commitment and no online payment: the proposal first, then you decide.",
     whatsappTitle: "Message us on WhatsApp",
+    whatsappShort: "WhatsApp",
     whatsappFallback: "A direct reply, no forms",
     whatsappMessage: "Hello, I would like information about a private trip through India.",
     emailSubject: "Enquiry about a trip to India",

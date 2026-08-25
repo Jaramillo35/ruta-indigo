@@ -21,7 +21,7 @@ export const journeys: Journey[] = [
   {
     slug: "triangulo-dorado",
     art: "agra",
-    photo: "/images/experiencias/triangulo-dorado/puerta-taj.jpg",
+    photo: "/images/experiencias/triangulo-dorado/grupo-puerta.jpg",
   },
   {
     slug: "india-a-tu-manera",

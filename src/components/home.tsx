@@ -4,6 +4,7 @@ import { JourneysSection } from "@/components/journeys-section";
 import { RouteSection } from "@/components/route-section";
 import { StepsSection } from "@/components/steps-section";
 import { ReasonsSection } from "@/components/reasons-section";
+import { GallerySection } from "@/components/gallery-section";
 import { FaqSection } from "@/components/faq-section";
 import { ContactSection } from "@/components/contact-section";
 import { SiteHeader } from "@/components/site-header";
@@ -77,7 +78,7 @@ export function Home({ lang }: { lang: Lang }) {
           nav: c.nav,
           cta: c.hero.ctaPrimary,
           brandDescriptor: c.brandDescriptor,
-          whatsapp: c.contact.whatsappTitle,
+          whatsapp: c.contact.whatsappShort,
           whatsappMessage: c.contact.whatsappMessage,
           emailSubject: c.contact.emailSubject,
           destinations: destinations
@@ -100,6 +101,7 @@ export function Home({ lang }: { lang: Lang }) {
         <JourneysSection lang={lang} />
         <RouteSection lang={lang} />
         <StepsSection lang={lang} />
+        <GallerySection lang={lang} />
         <ReasonsSection lang={lang} />
         <FaqSection lang={lang} />
         <ContactSection lang={lang} />

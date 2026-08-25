@@ -135,7 +135,7 @@ export function SiteHeader({
         </Link>
 
         <nav aria-label={copy.a11y.mainNav} className="hidden lg:block">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-0.5 xl:gap-1">
             {copy.nav.map((item) => {
               const id = item.href.slice(1);
               return (
@@ -143,7 +143,7 @@ export function SiteHeader({
                   <Link
                     href={item.href}
                     aria-current={active === id ? "true" : undefined}
-                    className={`relative rounded-full px-3.5 py-2 text-[0.9rem] transition-colors duration-200 ${
+                    className={`relative rounded-full px-2.5 py-2 text-[0.85rem] whitespace-nowrap transition-colors duration-200 xl:px-3.5 xl:text-[0.9rem] ${
                       active === id ? "text-marigold" : "text-mist-2 hover:text-mist"
                     }`}
                   >
@@ -162,13 +162,13 @@ export function SiteHeader({
               href={quickHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="pressable inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2.5 text-[0.9rem] text-mist hover:border-white/50 hover:bg-white/8"
+              className="pressable hidden items-center gap-2 rounded-full border border-white/20 px-4 py-2.5 text-[0.9rem] text-mist hover:border-white/50 hover:bg-white/8 xl:inline-flex"
             >
               <WhatsAppGlyph />
               {copy.whatsapp}
             </a>
           )}
-          <Cta href="#contacto" className="px-5 py-2.5">
+          <Cta href="#contacto" className="px-5 py-2.5 whitespace-nowrap">
             {copy.cta}
           </Cta>
         </div>
